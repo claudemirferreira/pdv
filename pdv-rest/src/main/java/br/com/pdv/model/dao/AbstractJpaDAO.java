@@ -13,25 +13,24 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	public void setClazz(Class<T> clazzToSet) {
+	public final void setClazz(Class<T> clazzToSet) {
 		this.clazz = clazzToSet;
 	}
 
-	public T getById(Long id) {
+	public T findOne(Long id) {
 		return entityManager.find(clazz, id);
 	}
 
-	@SuppressWarnings({ "unchecked" })
 	public List<T> findAll() {
 		return entityManager.createQuery("from " + clazz.getName()).getResultList();
 	}
 
-	public void save(T entity) {
+	public void create(T entity) {
 		entityManager.persist(entity);
 	}
 
-	public void update(T entity) {
-		entityManager.merge(entity);
+	public T update(T entity) {
+		return entityManager.merge(entity);
 	}
 
 	public void delete(T entity) {
@@ -39,7 +38,7 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
 	}
 
 	public void deleteById(Long entityId) {
-		T entity = getById(entityId);
+		T entity = findOne(entityId);
 		delete(entity);
 	}
 }

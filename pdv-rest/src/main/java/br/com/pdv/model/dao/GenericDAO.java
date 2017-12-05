@@ -24,7 +24,7 @@ public abstract class GenericDAO<T extends AbstractEntity> {
 		this.entityClass = entityClass;
 	}
 
-	@TransactionAttribute(TransactionAttributeType.MANDATORY)
+	//@TransactionAttribute(TransactionAttributeType.MANDATORY)
 	public T save(T entity) {
 		em.persist(entity);
 		return entity;

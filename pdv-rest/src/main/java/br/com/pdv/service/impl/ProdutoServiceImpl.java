@@ -44,4 +44,10 @@ public class ProdutoServiceImpl implements ProdutoService {
 		dao.remove(id);
 	}
 
+	@Override
+	public ProdutoDTO update(ProdutoDTO dto) {
+		Produto entity = dao.update(convert.convertToEntity(dto));
+		return convert.convertToDTO(entity);
+	}
+
 }

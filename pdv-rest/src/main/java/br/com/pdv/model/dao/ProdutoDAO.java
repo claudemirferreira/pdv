@@ -7,7 +7,7 @@ import br.com.pdv.model.entity.Produto;
 @Repository
 public class ProdutoDAO extends GenericDAO<Produto> {
 
-	public ProdutoDAO(Class<Produto> entityClass) {
-		super(entityClass);
+	public ProdutoDAO() {
+		super(Produto.class);
 	}
 }
