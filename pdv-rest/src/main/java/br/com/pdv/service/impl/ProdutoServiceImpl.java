@@ -29,21 +29,19 @@ public class ProdutoServiceImpl implements ProdutoService {
 	}
 
 	@Override
-	public ProdutoDTO save(Produto produto) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProdutoDTO save(ProdutoDTO dto) {
+		Produto entity = dao.save(convert.convertToEntity(dto));
+		return convert.convertToDTO(entity);
 	}
 
 	@Override
 	public ProdutoDTO findId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return convert.convertToDTO(dao.findId(id));
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-
+		dao.remove(id);
 	}
 
 }

@@ -31,9 +31,8 @@ public abstract class GenericDAO<T extends AbstractEntity> {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.MANDATORY)
-	public void remove(T entity) {
-		entity = em.find(entityClass, entity.getId());
-		em.remove(entity);
+	public void remove(Long id) {
+		em.remove(em.find(entityClass, id));
 	}
 
 	@TransactionAttribute(TransactionAttributeType.MANDATORY)

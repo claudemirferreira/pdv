@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,9 +30,16 @@ public class ProdutoController {
 	}
 
 	@GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProdutoDTO> findOne(@PathVariable(value = "id") String id) {
+	public ResponseEntity<ProdutoDTO> findId(@PathVariable(value = "id") String id) {
 		ProdutoDTO dto = service.findId(new Long(id));
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
+	
 
+
+	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto) {
+		dto = service.save(dto);
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}
 }
