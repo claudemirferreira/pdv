@@ -18,7 +18,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_produto")
-public class Produto implements Serializable {
+public class Produto extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
 
@@ -69,8 +69,6 @@ public class Produto implements Serializable {
 		this.estoque = estoque;
 		this.unidadeMedida = unidadeMedida;
 	}
-	
-
 
 	public Produto(String nome, String codigoBarra, BigDecimal precoCusto, BigDecimal precoVenda, Long estoque,
 			UnidadeMedidaEnum unidadeMedida) {
@@ -82,7 +80,7 @@ public class Produto implements Serializable {
 		this.unidadeMedida = unidadeMedida;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

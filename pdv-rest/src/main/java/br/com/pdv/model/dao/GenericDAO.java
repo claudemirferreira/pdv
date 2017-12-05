@@ -25,8 +25,9 @@ public abstract class GenericDAO<T extends AbstractEntity> {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.MANDATORY)
-	public void save(T entity) {
+	public T save(T entity) {
 		em.persist(entity);
+		return entity;
 	}
 
 	@TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -40,8 +41,8 @@ public abstract class GenericDAO<T extends AbstractEntity> {
 		return em.merge(entity);
 	}
 
-	public T find(Long entityID) {
-		return em.find(entityClass, entityID);
+	public T findId(Long id) {
+		return em.find(entityClass, id);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

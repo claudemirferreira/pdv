@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_cliente")
-public class Cliente implements Serializable {
+public class Cliente extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
 
@@ -24,7 +24,7 @@ public class Cliente implements Serializable {
 	@Column(name = "cliente_id")
 	@Getter
 	@Setter
-	private long id;
+	private Long id;
 
 	@Column(nullable = false)
 	@Getter

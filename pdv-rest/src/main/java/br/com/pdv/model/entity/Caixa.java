@@ -22,7 +22,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_caixa")
-public class Caixa implements Serializable {
+public class Caixa extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
 
@@ -31,7 +31,7 @@ public class Caixa implements Serializable {
 	@Column(name = "caixa_id")
 	@Getter
 	@Setter
-	private long id;
+	private Long id;
 
 	@Column(nullable = false)
 	@Getter

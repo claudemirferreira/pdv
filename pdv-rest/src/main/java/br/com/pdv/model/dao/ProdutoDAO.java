@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 import br.com.pdv.model.entity.Produto;
 
 @Repository
-public class ProdutoDAO extends AbstractJpaDao<Produto> {
+public class ProdutoDAO extends GenericDAO<Produto> {
 
+	public ProdutoDAO(Class<Produto> entityClass) {
+		super(entityClass);
+	}
 }

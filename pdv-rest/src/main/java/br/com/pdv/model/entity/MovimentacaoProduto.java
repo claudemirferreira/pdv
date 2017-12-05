@@ -16,7 +16,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_movimentacao_produto")
-public class MovimentacaoProduto implements Serializable {
+public class MovimentacaoProduto extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
 
@@ -25,7 +25,7 @@ public class MovimentacaoProduto implements Serializable {
 	@Column(name = "mov_pro_id")
 	@Getter
 	@Setter
-	private long id;
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "produto_id")

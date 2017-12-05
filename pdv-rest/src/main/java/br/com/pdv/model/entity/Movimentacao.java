@@ -18,7 +18,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_movimentacao")
-public class Movimentacao implements Serializable {
+public class Movimentacao extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
 
@@ -27,7 +27,7 @@ public class Movimentacao implements Serializable {
 	@Column(name = "movimentacao_id")
 	@Getter
 	@Setter
-	private long id;
+	private Long id;
 
 	@Column(nullable = false)
 	@Getter
