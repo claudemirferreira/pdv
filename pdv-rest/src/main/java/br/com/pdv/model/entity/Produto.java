@@ -18,6 +18,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_produto")
+@Getter
+@Setter
 public class Produto extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
@@ -25,31 +27,19 @@ public class Produto extends AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "produto_id")
-	@Getter
-	@Setter
 	private Long id;
 
 	@Column(nullable = false)
-	@Getter
-	@Setter
 	private String nome;
 
-	@Getter
-	@Setter
 	private String codigoBarra;
 
 	@Column(columnDefinition = "DECIMAL(10,2)")
-	@Getter
-	@Setter
 	private BigDecimal precoCusto;
 
 	@Column(columnDefinition = "DECIMAL(10,2)", nullable = false)
-	@Getter
-	@Setter
 	private BigDecimal precoVenda;
 
-	@Getter
-	@Setter
 	private Long estoque;
 
 	@Enumerated(EnumType.ORDINAL)
@@ -80,60 +70,5 @@ public class Produto extends AbstractEntity implements Serializable {
 		this.unidadeMedida = unidadeMedida;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCodigoBarra() {
-		return codigoBarra;
-	}
-
-	public void setCodigoBarra(String codigoBarra) {
-		this.codigoBarra = codigoBarra;
-	}
-
-	public BigDecimal getPrecoCusto() {
-		return precoCusto;
-	}
-
-	public void setPrecoCusto(BigDecimal precoCusto) {
-		this.precoCusto = precoCusto;
-	}
-
-	public BigDecimal getPrecoVenda() {
-		return precoVenda;
-	}
-
-	public void setPrecoVenda(BigDecimal precoVenda) {
-		this.precoVenda = precoVenda;
-	}
-
-	public Long getEstoque() {
-		return estoque;
-	}
-
-	public void setEstoque(Long estoque) {
-		this.estoque = estoque;
-	}
-
-	public UnidadeMedidaEnum getUnidadeMedida() {
-		return unidadeMedida;
-	}
-
-	public void setUnidadeMedida(UnidadeMedidaEnum unidadeMedida) {
-		this.unidadeMedida = unidadeMedida;
-	}
 
 }

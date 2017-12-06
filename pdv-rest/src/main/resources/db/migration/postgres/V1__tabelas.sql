@@ -10,7 +10,7 @@ CREATE TABLE public.pdv_cliente
   CONSTRAINT pdv_cliente_pkey PRIMARY KEY (cliente_id)
 )
 WITH (
-  OIDS=FALSE
+  OIDS=FALSE;
 );
 ALTER TABLE public.pdv_cliente
   OWNER TO root;
@@ -36,7 +36,7 @@ CREATE TABLE public.pdv_caixa
   CONSTRAINT pdv_caixa_pkey PRIMARY KEY (caixa_id)
 )
 WITH (
-  OIDS=FALSE
+  OIDS=FALSE;
 );
 ALTER TABLE public.pdv_caixa
   OWNER TO root;
@@ -55,7 +55,7 @@ CREATE TABLE public.pdv_produto
   CONSTRAINT pdv_produto_pkey PRIMARY KEY (produto_id)
 )
 WITH (
-  OIDS=FALSE
+  OIDS=FALSE;
 );
 ALTER TABLE public.pdv_produto
   OWNER TO root;
@@ -75,7 +75,7 @@ CREATE TABLE public.pdv_sangria
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
-  OIDS=FALSE
+  OIDS=FALSE;
 );
 ALTER TABLE public.pdv_sangria
   OWNER TO root;
@@ -93,7 +93,7 @@ CREATE TABLE public.pdv_movimentacao
   CONSTRAINT pdv_movimentacao_pkey PRIMARY KEY (movimentacao_id)
 )
 WITH (
-  OIDS=FALSE
+  OIDS=FALSE;
 );
 
 
@@ -108,7 +108,7 @@ CREATE TABLE public.pdv_movimentacao_produto
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
-  OIDS=FALSE
+  OIDS=FALSE;
 );
 ALTER TABLE public.pdv_movimentacao_produto
   OWNER TO root;
