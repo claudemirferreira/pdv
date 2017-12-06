@@ -7,7 +7,7 @@ import br.com.pdv.model.entity.Movimentacao;
 @Repository
 public class MovimentacaoDAO extends GenericDAO<Movimentacao> {
 
-	public MovimentacaoDAO(Class<Movimentacao> entityClass) {
-		super(entityClass);
+	public MovimentacaoDAO() {
+		super(Movimentacao.class);
 	}
 }

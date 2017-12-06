@@ -27,7 +27,7 @@ public class Produto extends AbstractEntity implements Serializable {
 	@Column(name = "produto_id")
 	@Getter
 	@Setter
-	private long id;
+	private Long id;
 
 	@Column(nullable = false)
 	@Getter
@@ -58,7 +58,7 @@ public class Produto extends AbstractEntity implements Serializable {
 	public Produto() {
 	}
 
-	public Produto(long id, String nome, String codigoBarra, BigDecimal precoCusto, BigDecimal precoVenda, Long estoque,
+	public Produto(Long id, String nome, String codigoBarra, BigDecimal precoCusto, BigDecimal precoVenda, Long estoque,
 			UnidadeMedidaEnum unidadeMedida) {
 		super();
 		this.id = id;

@@ -7,7 +7,7 @@ import br.com.pdv.model.entity.Caixa;
 @Repository
 public class CaixaDAO extends GenericDAO<Caixa> {
 
-	public CaixaDAO(Class<Caixa> entityClass) {
-		super(entityClass);
+	public CaixaDAO() {
+		super(Caixa.class);
 	}
 }

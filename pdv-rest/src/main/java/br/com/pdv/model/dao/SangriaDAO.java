@@ -7,7 +7,7 @@ import br.com.pdv.model.entity.Sangria;
 @Repository
 public class SangriaDAO extends GenericDAO<Sangria> {
 
-	public SangriaDAO(Class<Sangria> entityClass) {
-		super(entityClass);
+	public SangriaDAO() {
+		super(Sangria.class);
 	}
 }
