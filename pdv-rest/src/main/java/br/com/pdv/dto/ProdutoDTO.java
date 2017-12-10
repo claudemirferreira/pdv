@@ -13,6 +13,10 @@ import lombok.Setter;
 public class ProdutoDTO extends AbstractEntityDTO implements Serializable {
 
     private static final long serialVersionUID = -6749284348474933705L;
+	
+	@Getter
+	@Setter
+	private Long id;
 
     @Getter
     @Setter

@@ -1,15 +1,17 @@
 package br.com.pdv.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.pdv.enumerated.TipoMovimentacaoEnum;
+import br.com.pdv.model.entity.Caixa;
+import br.com.pdv.model.entity.Cliente;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MovimentacaoDTO extends AbstractEntityDTO implements Serializable {
+public class VendaDTO extends AbstractEntityDTO implements Serializable {
 
 	private static final long serialVersionUID = -6749284348474933705L;
 
@@ -23,14 +25,18 @@ public class MovimentacaoDTO extends AbstractEntityDTO implements Serializable {
 
 	@Getter
 	@Setter
-	private String numeroNotaFiscal;
+	private BigDecimal total;
 
 	@Getter
 	@Setter
-	private String obs;
+	private BigDecimal descontos;
 
 	@Getter
 	@Setter
-	private TipoMovimentacaoEnum tipoMovimentacao;
+	private Caixa caixa;
+
+	@Getter
+	@Setter
+	private Cliente cliente;
 
 }
