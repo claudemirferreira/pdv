@@ -29,11 +29,12 @@ public class Produto extends AbstractEntity implements Serializable {
 	@Setter
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 100)
 	@Getter
 	@Setter
 	private String nome;
 
+	@Column(length = 15)
 	@Getter
 	@Setter
 	private String codigoBarra;
@@ -54,7 +55,7 @@ public class Produto extends AbstractEntity implements Serializable {
 
 	@Enumerated(EnumType.ORDINAL)
 	private UnidadeMedidaEnum unidadeMedida;
-
+	
 	public Produto() {
 	}
 

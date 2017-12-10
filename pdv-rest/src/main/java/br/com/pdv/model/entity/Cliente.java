@@ -26,19 +26,27 @@ public class Cliente extends AbstractEntity implements Serializable {
 	@Setter
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 100)
 	@Getter
 	@Setter
 	private String nome;
 
+	@Column(nullable = false, length = 100)
 	@Getter
 	@Setter
 	private String endereco;
 
+	@Column(length = 11)
 	@Getter
 	@Setter
 	private String cpf;
 
+	@Column(length = 11)
+	@Getter
+	@Setter
+	private String rg;
+
+	@Column(length = 30)
 	@Getter
 	@Setter
 	private String telefone;

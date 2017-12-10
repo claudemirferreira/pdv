@@ -31,8 +31,23 @@ public class MovimentacaoProduto extends AbstractEntity implements Serializable 
 	@JoinColumn(name = "produto_id")
 	private Produto produto;
 
+	@JoinColumn(nullable = false)
 	@Getter
 	@Setter
-	private long quantidade;
+	private Long quantidade;
+
+	@ManyToOne
+	@JoinColumn(name = "movimentacao_id")
+	private Movimentacao movimentacao;
+	
+	public MovimentacaoProduto() {
+
+	}
+
+	public MovimentacaoProduto(Produto produto, Long quantidade, Movimentacao movimentacao) {
+		this.produto = produto;
+		this.movimentacao = movimentacao;
+		this.quantidade = quantidade;
+	}
 
 }
