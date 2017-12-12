@@ -83,6 +83,18 @@ CREATE TABLE public.pdv_sangria (
                 CONSTRAINT pdv_sangria_pkey PRIMARY KEY (sangria_id, caixa_id)
 );
 
+CREATE TABLE public.saa_usuario (
+                usuario_id BIGINT NOT NULL,
+                first_name VARCHAR(20) NOT NULL,
+                last_name VARCHAR(60) NOT NULL,
+                user_name VARCHAR(20) NOT NULL,
+                password VARCHAR(100) NOT NULL,
+                email VARCHAR(100) NOT NULL,
+                token VARCHAR(100),
+                CONSTRAINT pdv_usuario_pkey PRIMARY KEY (usuario_id)
+);
+
+ 
 
 ALTER TABLE public.pdv_movimentacao_produto ADD CONSTRAINT pdv_movimentacao_pdv_movimentacao_produto_fk
 FOREIGN KEY (movimentacao_id)
@@ -132,3 +144,5 @@ REFERENCES public.pdv_venda (venda_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+insert into saa_usuario (email, first_name, last_name, password, token, user_name, usuario_id) values ('claudemirramosferreira@gmail.com', 'Administrador', 'Sistema', 'admin', null, 'admin', 1)

@@ -51,7 +51,7 @@ public class UsuarioController {
     }
 
     @PutMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsuarioDTO> upfate(@RequestBody UsuarioDTO dto) {
+    public ResponseEntity<UsuarioDTO> update(@RequestBody UsuarioDTO dto) {
         dto = service.update(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

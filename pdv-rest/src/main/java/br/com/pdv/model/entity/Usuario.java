@@ -58,4 +58,18 @@ public class Usuario extends AbstractEntity implements Serializable {
     @Setter
     private String token;
 
+    public Usuario() {
+
+    }
+
+    public Usuario(Long id, String firstName, String lastName, String userName, String email, String password, String token) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.token = token;
+    }
+
 }
