@@ -3,7 +3,6 @@ package br.com.pdv.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
@@ -30,7 +29,7 @@ public class ProdutoDTO implements Serializable {
 
 	private Long estoque;
 
-	@Enumerated(EnumType.ORDINAL)
-	private UnidadeMedidaEnum unidadeMedida;
+    @Enumerated(EnumType.ORDINAL)
+    private UnidadeMedidaEnum unidadeMedida;
 
 }

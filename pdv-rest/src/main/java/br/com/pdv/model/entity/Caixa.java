@@ -38,7 +38,7 @@ public class Caixa extends AbstractEntity implements Serializable {
 	@Setter
 	private LocalDate dataAbertura;
 
-	@Column(nullable = false)
+	@Column
 	@Getter
 	@Setter
 	private LocalDate dataFechamento;
@@ -67,5 +67,5 @@ public class Caixa extends AbstractEntity implements Serializable {
 	@OneToMany
 	@JoinColumn(name = "caixa_id")
 	private List<Sangria> sangrias;
-
+	
 }

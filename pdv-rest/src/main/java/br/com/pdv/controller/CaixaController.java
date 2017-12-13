@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pdv.dto.ProdutoDTO;
-import br.com.pdv.service.ProdutoService;
+import br.com.pdv.dto.CaixaDTO;
+import br.com.pdv.service.CaixaService;
 
 @RestController
-@RequestMapping("produtos/")
-public class ProdutoController {
+@RequestMapping("caixas/")
+public class CaixaController {
 
     @Autowired
-    private ProdutoService service;
+    private CaixaService service;
 
     @GetMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ProdutoDTO>> listar() {
-        List<ProdutoDTO> lista = service.findAll();
+    public ResponseEntity<List<CaixaDTO>> listar() {
+        List<CaixaDTO> lista = service.findAll();
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProdutoDTO> findId(@PathVariable(value = "id") String id) {
-        ProdutoDTO dto = service.findId(new Long(id));
+    public ResponseEntity<CaixaDTO> findId(@PathVariable(value = "id") String id) {
+        CaixaDTO dto = service.findId(new Long(id));
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -44,13 +44,13 @@ public class ProdutoController {
     }
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto) {
+    public ResponseEntity<CaixaDTO> save(@RequestBody CaixaDTO dto) {
         dto = service.save(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PutMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProdutoDTO> upfate(@RequestBody ProdutoDTO dto) {
+    public ResponseEntity<CaixaDTO> upfate(@RequestBody CaixaDTO dto) {
         dto = service.update(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

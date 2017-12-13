@@ -38,7 +38,7 @@ public class Movimentacao extends AbstractEntity implements Serializable {
 	@Setter
 	@Column(length = 15)
 	private String numeroNotaFiscal;
-
+	
 	@Getter
 	@Setter
 	@Column(length = 100)
@@ -50,4 +50,56 @@ public class Movimentacao extends AbstractEntity implements Serializable {
 	@Setter
 	private TipoMovimentacaoEnum tipoMovimentacao;
 
+	public Movimentacao(LocalDate data, String numeroNotaFiscal, String obs,
+			TipoMovimentacaoEnum tipoMovimentacao) {
+		super();
+		this.data = data;
+		this.numeroNotaFiscal = numeroNotaFiscal;
+		this.obs = obs;
+		this.tipoMovimentacao = tipoMovimentacao;
+	}
+
+	public Movimentacao() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	public String getNumeroNotaFiscal() {
+		return numeroNotaFiscal;
+	}
+
+	public void setNumeroNotaFiscal(String numeroNotaFiscal) {
+		this.numeroNotaFiscal = numeroNotaFiscal;
+	}
+
+	public String getObs() {
+		return obs;
+	}
+
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
+
+	public TipoMovimentacaoEnum getTipoMovimentacao() {
+		return tipoMovimentacao;
+	}
+
+	public void setTipoMovimentacao(TipoMovimentacaoEnum tipoMovimentacao) {
+		this.tipoMovimentacao = tipoMovimentacao;
+	}
+	
 }

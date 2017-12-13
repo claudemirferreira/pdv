@@ -1,6 +1,7 @@
 package br.com.pdv.model.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,39 +16,34 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "pdv_movimentacao_produto")
-public class MovimentacaoProduto extends AbstractEntity implements Serializable {
+@Table(name = "pdv_produto_venda")
+public class ProdutoVenda extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "mov_pro_id")
+	@Column(name = "prod_vend_id")
 	@Getter
 	@Setter
 	private Long id;
+
+	@Column(columnDefinition = "DECIMAL(10,2)")
+	@Getter
+	@Setter
+	private BigDecimal valor;
+
+	@Getter
+	@Setter
+	@Column(length = 100)
+	private Long quantidade;
 
 	@ManyToOne
 	@JoinColumn(name = "produto_id")
 	private Produto produto;
 
-	@JoinColumn(nullable = false)
-	@Getter
-	@Setter
-	private Long quantidade;
-
 	@ManyToOne
-	@JoinColumn(name = "movimentacao_id")
-	private Movimentacao movimentacao;
-	
-	public MovimentacaoProduto() {
-
-	}
-
-	public MovimentacaoProduto(Produto produto, Long quantidade, Movimentacao movimentacao) {
-		this.produto = produto;
-		this.movimentacao = movimentacao;
-		this.quantidade = quantidade;
-	}
+	@JoinColumn(name = "venda_id")
+	private Venda venda;
 
 }

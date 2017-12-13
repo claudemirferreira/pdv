@@ -44,7 +44,7 @@ public class Produto extends AbstractEntity implements Serializable {
 
 	@Enumerated(EnumType.ORDINAL)
 	private UnidadeMedidaEnum unidadeMedida;
-
+	
 	public Produto() {
 	}
 
