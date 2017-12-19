@@ -3,6 +3,8 @@ package br.com.pdv.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 

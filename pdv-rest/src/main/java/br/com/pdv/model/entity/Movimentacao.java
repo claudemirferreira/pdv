@@ -18,6 +18,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_movimentacao")
+@Getter
+@Setter
 public class Movimentacao extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
@@ -25,29 +27,20 @@ public class Movimentacao extends AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "movimentacao_id")
-	@Getter
-	@Setter
 	private Long id;
 
 	@Column(nullable = false)
-	@Getter
-	@Setter
 	private LocalDate data;
 
-	@Getter
-	@Setter
 	@Column(length = 15)
 	private String numeroNotaFiscal;
-	
-	@Getter
-	@Setter
+
+
 	@Column(length = 100)
 	private String obs;
 
 	@Enumerated(EnumType.ORDINAL)
-	@Column(nullable = false)
-	@Getter
-	@Setter
+	@Column(nullable = false)	
 	private TipoMovimentacaoEnum tipoMovimentacao;
 
 	public Movimentacao(LocalDate data, String numeroNotaFiscal, String obs,
@@ -60,46 +53,6 @@ public class Movimentacao extends AbstractEntity implements Serializable {
 	}
 
 	public Movimentacao() {
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public LocalDate getData() {
-		return data;
-	}
-
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-
-	public String getNumeroNotaFiscal() {
-		return numeroNotaFiscal;
-	}
-
-	public void setNumeroNotaFiscal(String numeroNotaFiscal) {
-		this.numeroNotaFiscal = numeroNotaFiscal;
-	}
-
-	public String getObs() {
-		return obs;
-	}
-
-	public void setObs(String obs) {
-		this.obs = obs;
-	}
-
-	public TipoMovimentacaoEnum getTipoMovimentacao() {
-		return tipoMovimentacao;
-	}
-
-	public void setTipoMovimentacao(TipoMovimentacaoEnum tipoMovimentacao) {
-		this.tipoMovimentacao = tipoMovimentacao;
 	}
 	
 }

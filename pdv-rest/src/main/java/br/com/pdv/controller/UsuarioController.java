@@ -1,11 +1,15 @@
 package br.com.pdv.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import br.com.pdv.dto.UserSecurityDTO;
+import br.com.pdv.service.impl.AuthenticationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
+
+    @Autowired
+    private AuthenticationServiceImpl authenticationService;
 
     @GetMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UsuarioDTO>> listar() {
@@ -57,9 +64,9 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "autenticar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsuarioDTO> autenticar(@RequestBody AccountCredentialsDTO dto) {
-        UsuarioDTO usuarioDTO = service.autenticar(dto);
-        return new ResponseEntity<>(usuarioDTO, HttpStatus.OK);
+    public ResponseEntity autenticar(@RequestBody AccountCredentialsDTO dto) {
+        Optional<UserSecurityDTO> response =  authenticationService.authentication(dto.getUserName(), dto.getPassword());
+        return response.isPresent() ? new ResponseEntity<UserSecurityDTO>(response.get(), HttpStatus.OK) :  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }

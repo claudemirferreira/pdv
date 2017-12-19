@@ -26,14 +26,16 @@ spring:
     test-on-borrow: true
     initial-size: 3
     max-active: 5
+    removeAbandoned: true
     hikari:
       maximum-pool-size: 25
   jpa:
     database: postgresql
     show-sql: ${postgres.show_sql:true}
     open-in-view: false
+    generate-ddl: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
@@ -66,7 +68,7 @@ spring:
     show-sql: ${postgres.show_sql:true}
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
