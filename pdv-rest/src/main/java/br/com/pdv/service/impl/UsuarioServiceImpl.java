@@ -51,10 +51,4 @@ public class UsuarioServiceImpl implements UsuarioService {
         return convert.convertToDTO(entity);
     }
 
-    @Override
-    public UsuarioDTO autenticar(AccountCredentialsDTO dto) {
-        Usuario entity = dao.autenticar(dto);
-        return convert.convertToDTO(entity);
-    }
-
 }

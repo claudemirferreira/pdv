@@ -17,5 +17,4 @@ public interface UsuarioService {
 
     public void delete(Long id);
 
-    public UsuarioDTO autenticar(AccountCredentialsDTO dto);
 }

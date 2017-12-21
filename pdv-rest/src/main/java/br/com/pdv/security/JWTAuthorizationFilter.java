@@ -2,6 +2,9 @@ package br.com.pdv.security;
 
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +23,8 @@ import static br.com.pdv.security.SecurityConstants.TOKEN_PREFIX;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+    private static final Logger logger = LoggerFactory.getLogger(JWTAuthorizationFilter.class);
+
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
@@ -29,6 +34,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
 
+        UsernamePasswordAuthenticationToken authenticationToken = null;
         String header = request.getHeader(HEADER_STRING);
 
         if(header == null || !header.startsWith(TOKEN_PREFIX)) {
@@ -36,8 +42,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             return;
         }
 
-        UsernamePasswordAuthenticationToken authenticationToken = getAuthentication(request);
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        try {
+            authenticationToken = getAuthentication(request);
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        } catch (SignatureException ex) {
+            logger.error("Token incorreto", ex);
+        }
+
         chain.doFilter(request,response);
     }
 
@@ -49,12 +60,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                     .getBody()
                     .getSubject();
-
-            if(user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList() );
+            if (user != null) {
+                return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
             }
 
-            return null;
         }
 
         return null;

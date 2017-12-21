@@ -1,15 +1,11 @@
 package br.com.pdv.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import br.com.pdv.dto.UserSecurityDTO;
-import br.com.pdv.service.impl.AuthenticationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pdv.dto.AccountCredentialsDTO;
 import br.com.pdv.dto.UsuarioDTO;
 import br.com.pdv.service.UsuarioService;
 
@@ -29,9 +24,6 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
-
-    @Autowired
-    private AuthenticationServiceImpl authenticationService;
 
     @GetMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UsuarioDTO>> listar() {
@@ -61,12 +53,6 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> update(@RequestBody UsuarioDTO dto) {
         dto = service.update(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
-    }
-
-    @PostMapping(value = "autenticar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity autenticar(@RequestBody AccountCredentialsDTO dto) {
-        Optional<UserSecurityDTO> response =  authenticationService.authentication(dto.getUserName(), dto.getPassword());
-        return response.isPresent() ? new ResponseEntity<UserSecurityDTO>(response.get(), HttpStatus.OK) :  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }

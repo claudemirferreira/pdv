@@ -32,4 +32,8 @@ public class UserSecurityDTO {
         this.name = usuario.getFirstName();
         this.lastName = usuario.getLastName();
     }
+
+    public UserSecurityDTO() {
+
+    }
 }
