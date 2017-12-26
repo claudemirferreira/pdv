@@ -1,37 +1,49 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
-import { ApiService } from "./shared/api.service";
-import { AuthGuard } from "./shared/auth-guard.service";
-import { JwtService} from "./shared";
-import {SharedModule} from "./shared/shared.modules";
-import {UserService} from "./shared";
+import { AuthComponent } from './auth/auth.component';
+import { ProductsComponent } from './products/products.component';
+import { HomeComponent } from './home/home.component';
 
-const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
-
+const appRoutes: Routes = [
+  {
+    path: 'auth',
+    component: AuthComponent,
+    data: {}
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: {}
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent,
+    ProductsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AuthModule,
-    HomeModule,
-    rootRouting,
-    SharedModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
-  providers: [
-    ApiService,
-    AuthGuard,
-    JwtService,
-    UserService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
