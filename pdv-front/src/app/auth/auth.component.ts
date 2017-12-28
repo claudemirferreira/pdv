@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-auth',
@@ -8,10 +10,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
 
+  }
+
+  authenticate(e) {
+    e.preventDefault();
+    console.log('Auth ok');
+    this.router.navigate(['home']);
   }
 
 }
