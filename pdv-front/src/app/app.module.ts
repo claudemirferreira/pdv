@@ -1,53 +1,39 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
-import { ProductsComponent } from './products/products.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { AuthGuard } from './shared';
 
-import {Topnavbar} from './components/topnavbar/topnavbar.component';
-import {Navigation} from './components/navigation/navigation.component';
-
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: AuthComponent,
-    data: {}
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    data: {}
-  }
-];
+// AoT requires an exported function for factories
+export function createTranslateLoader(http: HttpClient) {
+    // for development
+    // return new TranslateHttpLoader(http, '/start-angular/SB-Admin-BS4-Angular-5/master/dist/assets/i18n/', '.json');
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    Navigation,
-    AuthComponent,
-    ProductsComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    Topnavbar
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
+        AppRoutingModule
+    ],
+    declarations: [AppComponent],
+    providers: [AuthGuard],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
