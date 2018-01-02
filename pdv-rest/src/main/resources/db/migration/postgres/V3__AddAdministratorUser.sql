@@ -1,0 +1,1 @@
+insert into saa_usuario (email, first_name, last_name, password, token, user_name, usuario_id) values ('admin@gmail.com', 'Administrador', 'Sistema', '$2a$04$yYqzKO9VL7gD6C/Y7IoDb.E3q/7sZUnd4iaU55.udqA/lWBLC8S2u', null, 'admin', 2)
