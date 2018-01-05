@@ -5,20 +5,38 @@
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
             <h1>Gestão de Produtos</h1>
 
-            <form role="form">
+            <form  [formGroup]="form">
                 
+                <div *ngIf="message.length > 0">
+                    <p>{{message}}</p>
+                </div>
+
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" [(ngModel)]="auth.email" name="email" required class="form-control input-underline input-lg" id="" placeholder="Email">
+                        <input type="text" 
+                        [(ngModel)]="auth.email" 
+                        name="email" 
+                        id="email"
+                        formControlName="email" 
+                        class="form-control input-underline input-lg"  
+                        placeholder="Email">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" [(ngModel)]="auth.password" name="password" required class="form-control input-underline input-lg" id="" placeholder="Senha">
+                        <input 
+                        id="passsword"
+                        type="password" 
+                        [(ngModel)]="auth.password" 
+                        name="password" 
+                        formControlName="password"
+                        class="form-control input-underline input-lg"  
+                        placeholder="Senha">
+                        
                     </div>
                 </div>
 
             
-                <a class="btn rounded-btn"  (click)="onLoggedin()"> Autenticar </a>
+                <button  (click)="onLoggedin()"   [disabled]="!form.valid" type="submit" class="btn rounded-btn" > Autenticar </button>
                 &nbsp;
                 <!-- <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a> -->
             </form>
