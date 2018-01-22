@@ -12,7 +12,9 @@
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)"><span>{{ 'New' | translate }}</span></a>
+                        <a [routerLink]="['/products']" [routerLinkActive]="['router-link-active']" >
+                            <span>{{ 'New' | translate }}</span>
+                        </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)"><span>{{ 'Search' | translate }}</span></a>

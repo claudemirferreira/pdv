@@ -1,4 +1,98 @@
 <div [@routerTransition]>
   <app-page-header [heading]="'Produtos'" [icon]="'fa-edit'"></app-page-header>
+
+
+  <form [formGroup]="productForm" role="form">
+
+        <div class="form-content">
+                <div class="form-group">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <fieldset class="form-group">
+          <label>Codigo de barras</label>
+          <input 
+          class="form-control" 
+          placeholder="|||"  
+          [(ngModel)]="product.codigoBarra" 
+          formControlName="codigoBarra" 
+          id="codigoBarra"
+          name="codigoBarra">
+        </fieldset>
+
+        <label for="disabledSelect">Preço do produto</label>
+        <div class="form-group input-group">
+          <span class="input-group-addon">R$</span>
+          <input 
+          type="text" 
+          class="form-control" 
+          formControlName="precoProduto"   
+          [(ngModel)]="product.precoProduto" 
+          id="precoProduto"
+          name="precoProduto">
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+
+        <fieldset>
+
+          <div class="form-group">
+            <label for="disabledSelect">Nome</label>
+            <input 
+            class="form-control" 
+            type="text" 
+            placeholder="Nome do produto" 
+            [(ngModel)]="product.nome" 
+            formControlName="nome"
+            id="nome"
+            name="name">
+          </div>
+
+          <label for="disabledSelect">Preço de venda</label>
+          <div class="form-group input-group">
+            <span class="input-group-addon">R$</span>
+            <input
+            id="precoVenda" 
+            type="text" 
+            class="form-control"  
+            [(ngModel)]="product.precoVenda" 
+            formControlName="precoVenda"
+            name="precoVenda">
+          </div>
+
+        </fieldset>
+      </div>
+
+      <div class="col-lg-6">
+
+        <div class="form-group">
+          <label for="disabledSelect">Unidade de Medida</label>
+          <select 
+          id="medida" 
+          class="form-control" 
+          [(ngModel)]="product.medida" 
+          formControlName="medida" 
+          name="medida" >
+            <option selected value="1">Unidade</option>
+            <option value="2">Peso</option>
+            <option value="3">Metro</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+    <fieldset class="button-group">
+      <button type="reset" class="btn btn-secondary">Limpar</button>
+      <button type="submit" class="btn btn-primary"  (click)="saveProduct()" [disabled]="!form.valid">Salvar</button>
+    </fieldset>
+
+    </div>
+    </div>
+
+  </form>
+
   
 </div>
