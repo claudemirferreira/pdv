@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
     private formSumitAttempt: boolean;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private form: FormBuilder,
         private router: Router,
     ) {}
 
@@ -35,12 +35,12 @@ export class ProductsComponent implements OnInit {
     }
 
     configureForm() {
-        this.productForm = this.formBuilder.group({
-            nome: [null, [Validators.required, Validators.nome]],
-            precoVenda: [null, [Validators.required, Validators.precoVenda]],
-            precoCusto: [null, [Validators.required, Validators.precoCusto]],
-            codigoBarra: [null, [Validators.required, Validators.codigoBarra]],
-            medida: [null, [Validators.required, Validators.medida]]
+        this.productForm = this.form.group({
+            nome: [null, [Validators.required]],
+            precoVenda: [null, [Validators.required]],
+            precoCusto: [null, [Validators.required]],
+            codigoBarra: [null, [Validators.required]],
+            medida: [null, [Validators.required]]
         });
     }
 

@@ -2,7 +2,7 @@
   <app-page-header [heading]="'Produtos'" [icon]="'fa-edit'"></app-page-header>
 
 
-  <form [formGroup]="productForm" role="form">
+  <form [formGroup]="productForm">
 
         <div class="form-content">
                 <div class="form-group">
@@ -17,7 +17,7 @@
           [(ngModel)]="product.codigoBarra" 
           formControlName="codigoBarra" 
           id="codigoBarra"
-          name="codigoBarra">
+          name="codigoBarra" >
         </fieldset>
 
         <label for="disabledSelect">Preço do produto</label>
@@ -26,10 +26,10 @@
           <input 
           type="text" 
           class="form-control" 
-          formControlName="precoProduto"   
-          [(ngModel)]="product.precoProduto" 
-          id="precoProduto"
-          name="precoProduto">
+          formControlName="precoCusto"   
+          [(ngModel)]="product.precoCusto" 
+          id="precoCusto"
+          name="precoCusto">
         </div>
       </div>
 
@@ -86,7 +86,7 @@
 
     <fieldset class="button-group">
       <button type="reset" class="btn btn-secondary">Limpar</button>
-      <button type="submit" class="btn btn-primary"  (click)="saveProduct()" [disabled]="!form.valid">Salvar</button>
+      <button type="submit" class="btn btn-primary"  (click)="saveProduct()" [disabled]="!productForm.valid">Salvar</button>
     </fieldset>
 
     </div>
