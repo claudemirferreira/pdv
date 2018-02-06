@@ -8,6 +8,7 @@ import { Input } from '@angular/core/src/metadata/directives';
 
 import { Product } from '../../shared/model/product.model';
 import { DashboardComponent } from '../../layout/dashboard/dashboard.component';
+import { ProductsService } from './products.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class ProductsComponent implements OnInit {
     constructor(
         private form: FormBuilder,
         private router: Router,
+        private service: ProductsService
     ) {}
 
 
@@ -52,6 +54,14 @@ export class ProductsComponent implements OnInit {
     }
 
     saveProduct() {
-        console.log(this.product);
+        // this.service.saveProducts(this.product).
+        // subscribe(
+        //     (data: any) =>  {
+        //         console.log("Success");
+        //     },
+        //     (data: any) => {
+        //         console.log(data);
+        //     }
+        // );
     }
 }

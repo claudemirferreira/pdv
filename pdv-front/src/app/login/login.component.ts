@@ -54,16 +54,6 @@ export class LoginComponent implements OnInit {
     }
 
     onLoggedin () {
-        this.loginService.authenticated(this.auth).
-            subscribe(
-                (data: any) =>  {
-                    localStorage.setItem('isLoggedin', 'true');
-                    this.router.navigate(['/dashboard']);
-                },
-                (data: any) => {
-                    console.log(data);
-                    this.message = 'Usuário ou senha inválidos';
-                }
-            );
+
     }
 }

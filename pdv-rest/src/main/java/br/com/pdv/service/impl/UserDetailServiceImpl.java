@@ -1,6 +1,5 @@
 package br.com.pdv.service.impl;
 
-import br.com.pdv.dto.UsuarioDTO;
 import br.com.pdv.model.entity.Usuario;
 import br.com.pdv.model.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +23,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Usuario> user =  userRepository.findByUserName(email);
+        Optional<Usuario> user =  userRepository.findByEmail(email);
         if (!user.isPresent()) {
             throw new UsernameNotFoundException(email);
         }

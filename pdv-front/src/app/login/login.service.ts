@@ -1,30 +1,58 @@
-import { Injectable, Inject } from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 import {Auth} from '../shared/model/auth.model';
+import {ApiService} from "../shared/service/api.service";
+
+import {UserAuth} from "../shared/model/user.model";
+import {JwtService} from "../shared/guard/jwt.service";
+import { distinctUntilChanged, map } from 'rxjs/operators';
+import {ReplaySubject} from "rxjs/ReplaySubject";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class LoginService {
 
-    readonly TOKEN_KEY = 'toke';
+  private currentUserSubject = new BehaviorSubject<UserAuth>({} as UserAuth);
+  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
-    constructor(private http: HttpClient) {}
+  private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
+  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-    public getToken() {
-        return localStorage.getItem(this.TOKEN_KEY);
-    }
 
-    public isAuthenticated(): boolean {
-        const token = this.getToken();
-        return tokenNotExpired(null, token);
-    }
+  constructor(
+      private apiService: ApiService,
+      private http: HttpClient,
+      private jwtService: JwtService
+    ) {}
 
-    public authenticated(auth: Auth) {
+
+    public attemptAuth(auth: Auth): Observable<UserAuth> {
         let body = JSON.stringify(auth);
-        //TODO modificar a forma de trabalhar com os endpoint 
-        return this.http.post('http://localhost:8080/api/login', body);
+        return this.apiService.post('/login', body)
+          .pipe(map(
+            data => {
+              this.setAuth(data.user);
+              return data;
+            }
+        ));
+    }
+
+    setAuth(user: UserAuth) {
+      this.jwtService.saveToken(user.token);
+      this.currentUserSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
+    }
+
+    purgeAuth() {
+      this.jwtService.destroyToken();
+      this.currentUserSubject.next({} as UserAuth);
+      this.isAuthenticatedSubject.next(false);
+    }
+
+    getCurrentUser(): UserAuth {
+      return this.currentUserSubject.getValue();
     }
 
 }

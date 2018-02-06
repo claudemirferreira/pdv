@@ -1,9 +1,11 @@
 package br.com.pdv.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import br.com.pdv.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     private UsuarioDAO dao;
 
     @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
     private UsuarioConvert convert;
+
+
 
     @Override
     public List<UsuarioDTO> findAll() {
@@ -51,4 +58,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return convert.convertToDTO(entity);
     }
 
+    @Override
+    public UsuarioDTO findEmail(String email) {
+        final Optional<Usuario> user = usuarioRepository.findByEmail(email);
+        if(user.isPresent()) {
+            return convert.convertToDTO(user.get());
+        }
+        return null;
+    }
 }

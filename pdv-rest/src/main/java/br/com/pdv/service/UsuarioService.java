@@ -7,14 +7,16 @@ import br.com.pdv.dto.UsuarioDTO;
 
 public interface UsuarioService {
 
-    public List<UsuarioDTO> findAll();
+    List<UsuarioDTO> findAll();
 
-    public UsuarioDTO save(UsuarioDTO dto);
+    UsuarioDTO save(UsuarioDTO dto);
 
-    public UsuarioDTO update(UsuarioDTO dto);
+    UsuarioDTO update(UsuarioDTO dto);
 
-    public UsuarioDTO findId(Long id);
+    UsuarioDTO findId(Long id);
 
-    public void delete(Long id);
+    UsuarioDTO findEmail(String email);
+
+    void delete(Long id);
 
 }

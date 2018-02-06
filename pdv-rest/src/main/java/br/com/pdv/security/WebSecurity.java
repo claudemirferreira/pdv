@@ -1,5 +1,6 @@
 package br.com.pdv.security;
 
+import br.com.pdv.service.UsuarioService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
