@@ -59,11 +59,17 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDTO findEmail(String email) {
+    public UsuarioDTO findUserByEmailConverter(String email) {
         final Optional<Usuario> user = usuarioRepository.findByEmail(email);
         if(user.isPresent()) {
             return convert.convertToDTO(user.get());
         }
         return null;
+    }
+
+    @Override
+    public Optional<Usuario> findUserByEmail(String email) {
+        final Optional<Usuario> user = usuarioRepository.findByEmail(email);
+        return user;
     }
 }

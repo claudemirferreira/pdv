@@ -45,8 +45,6 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
     private String lastName;
 
     @Column(nullable = false, length = 20)
-    @Getter
-    @Setter
     private String userName;
 
     @Column(nullable = false, length = 100)

@@ -1,30 +1,29 @@
 package br.com.pdv.controller;
 
-import java.util.List;
-
+import br.com.pdv.dto.UsuarioDTO;
+import br.com.pdv.service.EncryptService;
+import br.com.pdv.service.JwtService;
+import br.com.pdv.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.pdv.dto.UsuarioDTO;
-import br.com.pdv.service.UsuarioService;
+import java.util.List;
 
 @RestController
-@RequestMapping("usuario/")
+@RequestMapping("/usuario/")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
+
+    @Autowired
+    private EncryptService encryptService;
+
+    @Autowired
+    private JwtService jwtService;
 
 
     @GetMapping(
@@ -70,14 +69,6 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> update(@RequestBody UsuarioDTO dto) {
         dto = service.update(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
-    }
-
-    @DeleteMapping(
-            value = "{id}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsuarioDTO> getByEmail(@RequestBody String email) {
-        return new ResponseEntity<UsuarioDTO>(service.findEmail(email), HttpStatus.OK);
     }
 
 }

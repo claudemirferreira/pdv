@@ -1,9 +1,11 @@
 package br.com.pdv.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import br.com.pdv.dto.AccountCredentialsDTO;
 import br.com.pdv.dto.UsuarioDTO;
+import br.com.pdv.model.entity.Usuario;
 
 public interface UsuarioService {
 
@@ -15,7 +17,9 @@ public interface UsuarioService {
 
     UsuarioDTO findId(Long id);
 
-    UsuarioDTO findEmail(String email);
+    UsuarioDTO findUserByEmailConverter(String email);
+
+    Optional<Usuario> findUserByEmail(String email);
 
     void delete(Long id);
 

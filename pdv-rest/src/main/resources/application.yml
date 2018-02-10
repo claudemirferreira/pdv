@@ -4,7 +4,14 @@ server:
   port: 8080
   contextPath: /api
 
+jwt:
+  secret: nRvyYC4soFxBdZ-F-5Nnzz5USXstR1YylsTd-mA0aKtI9HUlriGrtkf-TiuDapkLiUCogO3JOK7kwZisrHp6wA
+  sessionTime: 86400
+
 spring:
+  jackson:
+    deserialization:
+      UNWRAP_ROOT_VALUE: true
   profiles:
     active: dev
 
