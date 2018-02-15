@@ -1,52 +1,52 @@
 package br.com.pdv.service.impl;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
+import br.com.pdv.convert.ProdutoConvert;
+import br.com.pdv.dto.ProdutoDTO;
+import br.com.pdv.model.entity.Produto;
+import br.com.pdv.repository.ProdutoRepository;
+import br.com.pdv.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.pdv.convert.ProdutoConvert;
-import br.com.pdv.dto.ProdutoDTO;
-import br.com.pdv.model.dao.ProdutoDAO;
-import br.com.pdv.model.entity.Produto;
-import br.com.pdv.service.ProdutoService;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
 public class ProdutoServiceImpl implements ProdutoService {
 
 	@Autowired
-	private ProdutoDAO dao;
+	private ProdutoRepository produtoRepository;
 
 	@Autowired
 	private ProdutoConvert convert;
 
 	@Override
 	public List<ProdutoDTO> findAll() {
-		return convert.convertToDTO(dao.findAll());
+		return convert.convertToDTO(produtoRepository.findAll());
 	}
 
 	@Override
+	@Transactional
 	public ProdutoDTO save(ProdutoDTO dto) {
-		Produto entity = dao.save(convert.convertToEntity(dto));
-		return convert.convertToDTO(entity);
+		Produto produto = convert.convertToEntity(dto);
+		produto = produtoRepository.save(produto);
+		return convert.convertToDTO(produto);
 	}
 
 	@Override
 	public ProdutoDTO findId(Long id) {
-		return convert.convertToDTO(dao.findId(id));
+		return convert.convertToDTO(produtoRepository.findOne(id));
 	}
 
 	@Override
 	public void delete(Long id) {
-		dao.remove(id);
+		produtoRepository.delete(id);
 	}
 
 	@Override
 	public ProdutoDTO update(ProdutoDTO dto) {
-		Produto entity = dao.update(convert.convertToEntity(dto));
+		Produto entity = produtoRepository.save(convert.convertToEntity(dto)) ;
 		return convert.convertToDTO(entity);
 	}
 

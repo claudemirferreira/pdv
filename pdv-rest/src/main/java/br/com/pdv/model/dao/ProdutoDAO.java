@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.pdv.model.entity.Produto;
 
+@Deprecated
 @Repository
 public class ProdutoDAO extends GenericDAO<Produto> {
 
