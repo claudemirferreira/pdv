@@ -1,8 +1,8 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {Router} from '@angular/router';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 import {Produto} from '../../shared/model/produto.model';
 import {ProductsService} from './products.service';
@@ -19,9 +19,9 @@ export class ProductsComponent implements OnInit {
   product: Produto;
   productForm: FormGroup;
   closeResult: string;
-  hideModal: boolean;
 
   private formSumitAttempt: boolean;
+  private modalRef: NgbModalRef;
 
   constructor(private form: FormBuilder,
               private router: Router,
@@ -33,7 +33,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.product = new Produto();
     this.configureForm();
-    this.hideModal = true;
   }
 
   configureForm() {
@@ -66,11 +65,17 @@ export class ProductsComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modalRef = this.modalService.open(content);
+    this.modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  goToDashboard() {
+    this.modalRef.close();
+    this.router.navigateByUrl('/dashboard');
   }
 
   /**
@@ -78,9 +83,10 @@ export class ProductsComponent implements OnInit {
    * TODO retirar a validacao do form
    * @param content
    */
-  clearForm(content) {
+  clearForm(content:any) {
     this.product = new Produto();
     this.productForm.reset();
+    this.modalRef.close();
   }
 
   private getDismissReason(reason: any): string {

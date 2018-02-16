@@ -71,7 +71,7 @@
               <select
                 id="medida"
                 class="form-control"
-                [(ngModel)]="product.medida"
+                [(ngModel)]="product.unidadeMedida"
                 formControlName="medida"
                 name="medida">
                 <option selected value="1">Unidade</option>
@@ -91,7 +91,7 @@
         </fieldset>
 
         <div class="card-body" >
-          <ng-template #content let-c="close" let-d="dismiss">
+          <ng-template #content let-c="close" let-d="dismiss" >
             <div class="modal-header">
               <h4 class="modal-title">Sucesso</h4>
               <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -103,8 +103,8 @@
               <p>Deseja realizar um novo cadastro?</p>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" type="button" (click)="clearForm(content)">OK</button>
-              <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+              <button class="btn btn-primary" type="button" (click)="clearForm(content)">Sim</button>
+              <button type="button" class="btn btn-secondary" (click)="goToDashboard()">Não</button>
             </div>
           </ng-template>
         </div>

@@ -17,7 +17,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"><span>{{ 'Search' | translate }}</span></a>
+                        <!--<a href="javascript:void(0)"><span>{{ 'Search' | translate }}</span></a>-->
+                      <a [routerLink]="['/products-search']" [routerLinkActive]="['router-link-active']" >
+                        <span>{{ 'Search' | translate }}</span>
+                      </a>
                     </li>
                 </ul>
             </li>

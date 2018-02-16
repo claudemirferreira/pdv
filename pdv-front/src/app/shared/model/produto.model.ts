@@ -3,5 +3,5 @@ export class Produto {
     codigoBarra: string;
     precoCusto: number;
     precoVenda: number;
-    medida: number;
+    unidadeMedida: number;
 }
