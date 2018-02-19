@@ -1,1 +1,123 @@
-<p>Ok</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Produtos - Pesquisa'" [icon]="'fa-edit'"></app-page-header>
+
+
+  <form [formGroup]="productForm">
+
+    <div class="form-content">
+      <div class="form-group">
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <fieldset class="form-group">
+              <label>Codigo de barras</label>
+              <input
+                class="form-control"
+                placeholder="|||"
+                [(ngModel)]="product.codigoBarra"
+                formControlName="codigoBarra"
+                id="codigoBarra"
+                name="codigoBarra">
+            </fieldset>
+          </div>
+
+          <div class="col-lg-4">
+            <fieldset>
+              <div class="form-group">
+                <label for="disabledSelect">Nome</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Nome do produto"
+                  [(ngModel)]="product.nome"
+                  formControlName="nome"
+                  id="nome"
+                  name="name">
+              </div>
+            </fieldset>
+
+          </div>
+
+          <div class="col-lg-4">
+            <fieldset>
+              <label></label>
+              <div class="form-group div-button-search">
+                <button class="btn btn-primary" type="button" >Pesquisar</button>
+              </div>
+            </fieldset>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-xl-6 col-lg-12">
+        <div class="card mb-3">
+          <div class="card-header">
+            Produtos
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>C.Barra</th>
+                <th>Nome</th>
+                <th>Preco Venda</th>
+                <th>Aćões</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1111</th>
+                <td>Forno</td>
+                <td>400,00</td>
+                <td>Editar Excluir</td>
+              </tr>
+              <tr>
+                <th scope="row">2222</th>
+                <td>Forno</td>
+                <td>400,00</td>
+                <td>Editar Excluir</td>
+              </tr>
+              <tr>
+                <th scope="row">3333</th>
+                <td>Forno</td>
+                <td>400,00</td>
+                <td>Editar Excluir</td>
+              </tr>
+              </tbody>
+            </table>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="card-body table-responsive">
+        <nav aria-label="Produtos">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  </form>
+</div>

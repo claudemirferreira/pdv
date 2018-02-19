@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {routerTransition} from "../../router.animations";
+import {FormGroup} from "@angular/forms";
+import {Produto} from "../../shared/model/produto.model";
 
 @Component({
   selector: 'app-products-search',
@@ -8,6 +10,9 @@ import {routerTransition} from "../../router.animations";
   animations: [routerTransition()]
 })
 export class ProductsSearchComponent implements OnInit {
+
+  product: Produto;
+  productForm: FormGroup;
 
   ngOnInit(): void {
   }
