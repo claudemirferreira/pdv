@@ -1,6 +1,7 @@
 package br.com.pdv.dto;
 
 import br.com.pdv.enumerated.UnidadeMedidaEnum;
+import br.com.pdv.model.entity.Produto;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,5 +37,15 @@ public class ProdutoDTO implements Serializable {
 	@Column(name = "medida")
     @Enumerated(EnumType.ORDINAL)
     private UnidadeMedidaEnum unidadeMedida;
+
+	public void setProduto(final Produto produto) {
+		this.id = produto.getId();
+		this.nome = produto.getNome();
+		this.codigoBarra = produto.getCodigoBarra();
+		this.precoCusto = produto.getPrecoCusto().toString();
+		this.precoVenda = produto.getPrecoVenda().toString();
+		this.estoque = produto.getEstoque();
+		this.unidadeMedida = produto.getUnidadeMedida();
+	}
 
 }

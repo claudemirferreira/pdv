@@ -24,6 +24,8 @@ public class Produto extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
 
+	public static final String PRODUTO_NOME = "nome";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "produto_id")

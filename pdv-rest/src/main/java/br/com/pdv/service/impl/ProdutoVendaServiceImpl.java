@@ -23,6 +23,7 @@ public class ProdutoVendaServiceImpl implements ProdutoVendaService {
 	@Autowired
 	private ProdutoVendaConvert convert;
 
+
 	@Override
 	public List<ProdutoVendaDTO> findAll() {
 		return convert.convertToDTO(dao.findAll());
