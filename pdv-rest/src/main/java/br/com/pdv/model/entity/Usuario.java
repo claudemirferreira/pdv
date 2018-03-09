@@ -21,6 +21,8 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "saa_usuario")
 public class Usuario extends AbstractEntity implements UserDetails, Serializable {
@@ -112,24 +114,38 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
         return this.getEmail();
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return this.accountNonExpired;
+    public String getEmail() {
+        return this.email;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return this.accountNonLocked;
-    }
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return this.credentialNonExpired;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return this.enabled;
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
