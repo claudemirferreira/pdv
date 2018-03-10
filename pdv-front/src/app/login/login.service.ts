@@ -24,21 +24,6 @@ export class LoginService {
     private jwtService: JwtService
   ) {}
 
-  // Verify JWT in localstorage with server & load user's info.
-  // This runs once on application startup.
-  populate() {
-    // If JWT detected, attempt to get & store user's info
-    if (this.jwtService.getToken()) {
-      this.apiService.get('/user')
-        .subscribe(
-          data => this.setAuth(data.user),
-          err => this.purgeAuth()
-        );
-    } else {
-      // Remove any potential remnants of previous auth states
-      this.purgeAuth();
-    }
-  }
 
   setAuth(user: UserAuth) {
     // Save JWT sent from server in localstorage
@@ -47,15 +32,6 @@ export class LoginService {
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
-  }
-
-  purgeAuth() {
-    // Remove JWT from localstorage
-    this.jwtService.destroyToken();
-    // Set current user to an empty object
-    this.currentUserSubject.next({} as UserAuth);
-    // Set auth status to false
-    this.isAuthenticatedSubject.next(false);
   }
 
   attemptAuth(type, credentials): Observable<UserAuth> {

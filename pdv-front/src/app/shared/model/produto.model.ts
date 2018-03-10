@@ -1,7 +1,7 @@
 export class Produto {
-    nome: string;
-    codigoBarra: string;
-    precoCusto: number;
-    precoVenda: number;
-    unidadeMedida: number;
+    public nome: string = "";
+    public codigoBarra: string = "";
+    public precoCusto: number;
+    public precoVenda: number;
+    public unidadeMedida: number;
 }

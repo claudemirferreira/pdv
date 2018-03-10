@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Produtos - Pesquisa'" [icon]="'fa-edit'"></app-page-header>
+  <app-page-header [heading]="'Produtos'" [icon]="'fa-edit'"></app-page-header>
 
 
   <form [formGroup]="productForm">
@@ -25,7 +25,7 @@
           <div class="col-lg-4">
             <fieldset>
               <div class="form-group">
-                <label for="disabledSelect">Nome</label>
+                <label>Nome</label>
                 <input
                   class="form-control"
                   type="text"
@@ -33,7 +33,7 @@
                   [(ngModel)]="product.nome"
                   formControlName="nome"
                   id="nome"
-                  name="name">
+                  name="nome">
               </div>
             </fieldset>
 
@@ -43,7 +43,7 @@
             <fieldset>
               <label></label>
               <div class="form-group div-button-search">
-                <button class="btn btn-primary" type="button" >Pesquisar</button>
+                <button class="btn btn-primary" type="button" (click)="search(content)">Pesquisar</button>
               </div>
             </fieldset>
           </div>
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="objects.content.length > 0" >
       <div class="col col-xl-6 col-lg-12">
         <div class="card mb-3">
           <div class="card-header">
@@ -69,26 +69,17 @@
                 <th>Aćões</th>
               </tr>
               </thead>
+
               <tbody>
-              <tr>
-                <th scope="row">1111</th>
-                <td>Forno</td>
-                <td>400,00</td>
+              <tr *ngFor="let p of objects.content">
+                <th scope="row">{{p.codigoBarra}}</th>
+                <td>{{p.nome}}</td>
+                <td>{{p.precoVenda}}</td>
                 <td>Editar Excluir</td>
               </tr>
-              <tr>
-                <th scope="row">2222</th>
-                <td>Forno</td>
-                <td>400,00</td>
-                <td>Editar Excluir</td>
-              </tr>
-              <tr>
-                <th scope="row">3333</th>
-                <td>Forno</td>
-                <td>400,00</td>
-                <td>Editar Excluir</td>
-              </tr>
+
               </tbody>
+
             </table>
 
 
