@@ -44,12 +44,16 @@ export class ProductsSearchComponent implements OnInit {
     this.service.searchProducts(this.product).subscribe(
       (data: any) => {
         this.objects = data;
-        console.log("Retornou")
+        console.log(this.objects)
       },(data: any) =>  {
         console.log("Erro")
       }
     );
 
+  }
+
+  setPage(page: number) {
+    console.log(page)
   }
 
 

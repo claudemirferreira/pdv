@@ -7,7 +7,7 @@ export class ObjectsPaginated {
   public size: number;
   public sort: any;
   public totalElements: number;
-  public totalPage: number;
+  public totalPages: number;
   public content: any[] = [];
 
 }

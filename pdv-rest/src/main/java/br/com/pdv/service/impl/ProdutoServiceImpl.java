@@ -63,7 +63,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 	public ProdutoDTO save(ProdutoDTO dto) {
 		Produto produto = convert.convertToEntity(dto);
 		produto = produtoRepository.save(produto);
-		return convert.convertToDTO(produto);
+		return new ProdutoDTO(produto);
 	}
 
 	@Override

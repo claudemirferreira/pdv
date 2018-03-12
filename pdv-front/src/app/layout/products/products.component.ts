@@ -1,11 +1,12 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {Router} from '@angular/router';
-import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {ModalDismissReasons, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 import {Produto} from '../../shared/model/produto.model';
 import {ProductsService} from './products.service';
+import {Paginate} from "../../shared/model/paginated.model";
 
 
 @Component({
@@ -17,10 +18,10 @@ import {ProductsService} from './products.service';
 export class ProductsComponent implements OnInit {
 
   product: Produto;
+  paginated: Paginate;
   productForm: FormGroup;
   closeResult: string;
 
-  private formSumitAttempt: boolean;
   private modalRef: NgbModalRef;
 
   constructor(private form: FormBuilder,
@@ -43,13 +44,6 @@ export class ProductsComponent implements OnInit {
       codigoBarra: [null, [Validators.required]],
       medida: [null, [Validators.required]]
     });
-  }
-
-  isFieldValid(field: string) {
-    return (
-      (!this.productForm.get(field).valid && this.productForm.get(field).touched) ||
-      (this.productForm.get(field).untouched && this.formSumitAttempt)
-    );
   }
 
   saveProduct(content) {

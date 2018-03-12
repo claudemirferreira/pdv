@@ -6,9 +6,7 @@
 
     <div class="form-content">
       <div class="form-group">
-
         <div class="row">
-
           <div class="col-lg-4">
             <fieldset class="form-group">
               <label>Codigo de barras</label>
@@ -36,7 +34,6 @@
                   name="nome">
               </div>
             </fieldset>
-
           </div>
 
           <div class="col-lg-4">
@@ -53,10 +50,11 @@
       </div>
     </div>
 
-    <div class="row" *ngIf="objects.content.length > 0" >
-      <div class="col col-xl-6 col-lg-12">
+    <div  *ngIf="objects.content.length > 0">
+      <div class="ol-lg-4">
         <div class="card mb-3">
           <div class="card-header">
+
             Produtos
           </div>
           <div class="card-body table-responsive">
@@ -77,36 +75,47 @@
                 <td>{{p.precoVenda}}</td>
                 <td>Editar Excluir</td>
               </tr>
-
               </tbody>
-
             </table>
-
-
-
           </div>
         </div>
       </div>
+
       <div class="card-body table-responsive">
+
         <nav aria-label="Produtos">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
+          <ul *ngIf="objects.totalPages >= 1" class="pagination" >
+
+
+
+            <li class="page-item" [ngClass]="{disabled:objects.first === true}">
+              <a class="page-link" (click)="setPage(1)" aria-label="Previous">
+                <span aria-hidden="true">Fists</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
+
+            <li class="page-item" [ngClass]="{disabled:objects.first === true}">
+              <a class="page-link" (click)="setPage(objects.number - 1)" aria-label="Previous">
+                <span aria-hidden="true">Previous</span>
               </a>
             </li>
+
+            <!--<li class="page-item"  *ngFor="let page of objects.totalPages; let i=index" [ngClass]="{active:objects.number === page}">-->
+              <!--<a (click)="setPage(page)">{{page}}</a>-->
+            <!--</li>-->
+
+
+            <li class="page-item" [ngClass]="{disabled:objects.number === objects.totalPages}">
+              <a class="page-link" (click)="setPage(objects.totalPages)">
+                <span aria-hidden="true">Last</span>
+              </a>
+            </li>
+
+
           </ul>
+
         </nav>
+
       </div>
     </div>
 

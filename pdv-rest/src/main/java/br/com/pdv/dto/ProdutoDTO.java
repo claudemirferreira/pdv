@@ -38,6 +38,13 @@ public class ProdutoDTO implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     private UnidadeMedidaEnum unidadeMedida;
 
+	public ProdutoDTO() {
+	}
+
+	public ProdutoDTO(final Produto produto) {
+		this.setProduto(produto);
+	}
+
 	public void setProduto(final Produto produto) {
 		this.id = produto.getId();
 		this.nome = produto.getNome();
