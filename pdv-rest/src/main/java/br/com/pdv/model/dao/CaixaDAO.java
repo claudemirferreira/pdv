@@ -17,14 +17,25 @@ public class CaixaDAO extends GenericDAO<Caixa> {
 		super(Caixa.class);
 	}
 
-	public boolean existeCaixaAberto(Long clienteId) {
+	public boolean existeCaixaAberto(Long usuarioId) {
 		try {
-		    em.createQuery("SELECT c from Caixa c INNER JOIN c.usuario u where c.statusCaixa = :statusCaixa and u.id = :clienteId")
+		    em.createQuery("SELECT c from Caixa c INNER JOIN c.usuario u where c.statusCaixa = :statusCaixa and u.id = :usuarioId")
 					.setParameter("statusCaixa", StatusCaixaEnum.ABERTO)
-					.setParameter("clienteId", clienteId).getSingleResult();
+					.setParameter("usuarioId", usuarioId).getSingleResult();
 			return false;
 		} catch (NoResultException e) {
 			return true;
 		}
 	}
+
+    public boolean caixaEstaAberto(Long caixaId) {
+        try {
+            em.createQuery("SELECT c from Caixa c where c.statusCaixa = :statusCaixa and c.id = :caixaId")
+                    .setParameter("statusCaixa", StatusCaixaEnum.ABERTO)
+                    .setParameter("caixaId", caixaId).getSingleResult();
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }

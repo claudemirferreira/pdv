@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import br.com.pdv.model.dao.CaixaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class SangriaServiceImpl implements SangriaService {
 	private SangriaDAO dao;
 
 	@Autowired
+	private CaixaDAO caixaDao;
+
+	@Autowired
 	private SangriaConvert convert;
 
 	@Override
@@ -31,10 +35,13 @@ public class SangriaServiceImpl implements SangriaService {
 
 	@Override
 	public SangriaDTO save(SangriaDTO dto) {
-		Sangria entity = convert.convertToEntity(dto);
-		entity.setData(new Date());
-		entity = dao.save(entity);
-		return convert.convertToDTO(entity);
+		if ( caixaDao.caixaEstaAberto(dto.getCaixa().getId()) ){
+			Sangria entity = convert.convertToEntity(dto);
+			entity.setData(new Date());
+			entity = dao.save(entity);
+			return convert.convertToDTO(entity);
+		}
+		return null;
 	}
 
 	@Override
