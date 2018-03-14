@@ -43,7 +43,7 @@ public class CaixaController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CaixaDTO> save(@RequestBody CaixaDTO dto) {
         dto = service.save(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);

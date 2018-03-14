@@ -21,8 +21,6 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "saa_usuario")
 public class Usuario extends AbstractEntity implements UserDetails, Serializable {
@@ -32,37 +30,25 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "usuario_id")
-    @Getter
-    @Setter
     private Long id;
 
     @Column(nullable = false, length = 20)
-    @Getter
-    @Setter
     private String firstName;
 
     @Column(nullable = false, length = 20)
-    @Getter
-    @Setter
     private String lastName;
 
     @Column(nullable = false, length = 20)
     private String userName;
 
     @Column(nullable = false, length = 100)
-    @Getter
-    @Setter
     @Email
     private String email;
 
     @Column(nullable = false, length = 100)
-    @Getter
-    @Setter
     private String password;
 
     @Column(length = 100)
-    @Getter
-    @Setter
     private String token;
 
     @Column(name = "tx_authorities")
@@ -148,4 +134,76 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 		return false;
 	}
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public boolean isCredentialNonExpired() {
+        return credentialNonExpired;
+    }
+
+    public void setCredentialNonExpired(boolean credentialNonExpired) {
+        this.credentialNonExpired = credentialNonExpired;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 }

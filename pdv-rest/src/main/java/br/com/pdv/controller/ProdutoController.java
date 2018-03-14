@@ -2,6 +2,7 @@ package br.com.pdv.controller;
 
 import java.util.List;
 
+import br.com.pdv.dto.PessoaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,12 +38,10 @@ public class ProdutoController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PostMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto, BindingResult bindingResult) {
-        dto = service.save(dto);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<PessoaDTO> save(@RequestBody PessoaDTO dto) {
+        //dto = service.save(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

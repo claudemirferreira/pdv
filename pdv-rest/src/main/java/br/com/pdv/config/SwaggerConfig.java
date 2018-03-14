@@ -23,7 +23,7 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Swagger API")
-				.description("Documentação endpoint")
+				.description("Documentacao endpoint")
 				.version("1.0").build();
 	}
 }

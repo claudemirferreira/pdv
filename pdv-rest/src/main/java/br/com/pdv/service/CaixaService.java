@@ -16,4 +16,6 @@ public interface CaixaService {
 
 	public void delete(Long id);
 
+	public boolean existeCaixaAberto(CaixaDTO dto);
+
 }
