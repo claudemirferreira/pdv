@@ -43,12 +43,10 @@ public class Caixa extends AbstractEntity implements Serializable {
 	private BigDecimal totalApurado;
 
 	@Column(columnDefinition = "DECIMAL(10,2)", nullable = false)
-
 	private BigDecimal totalInicial;
 
 	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false)
-
 	private StatusCaixaEnum statusCaixa;
 
 	@OneToMany

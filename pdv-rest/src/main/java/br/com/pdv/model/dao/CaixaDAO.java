@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import br.com.pdv.model.entity.Caixa;
 
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
+import java.util.Collection;
 
 @Repository
 public class CaixaDAO extends GenericDAO<Caixa> {
@@ -15,10 +17,11 @@ public class CaixaDAO extends GenericDAO<Caixa> {
 		super(Caixa.class);
 	}
 
-	public boolean existeCaixaAberto(CaixaDTO dto) {
+	public boolean existeCaixaAberto(Long clienteId) {
 		try {
-			em.createQuery("SELECT u from Caixa u where u.statusCaixa = :statusCaixa")
-					.setParameter("statusCaixa", StatusCaixaEnum.ABERTO).getSingleResult();
+		    em.createQuery("SELECT c from Caixa c INNER JOIN c.usuario u where c.statusCaixa = :statusCaixa and u.id = :clienteId")
+					.setParameter("statusCaixa", StatusCaixaEnum.ABERTO)
+					.setParameter("clienteId", clienteId).getSingleResult();
 			return false;
 		} catch (NoResultException e) {
 			return true;

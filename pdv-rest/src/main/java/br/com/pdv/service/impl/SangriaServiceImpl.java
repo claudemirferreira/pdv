@@ -1,5 +1,6 @@
 package br.com.pdv.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -30,7 +31,9 @@ public class SangriaServiceImpl implements SangriaService {
 
 	@Override
 	public SangriaDTO save(SangriaDTO dto) {
-		Sangria entity = dao.save(convert.convertToEntity(dto));
+		Sangria entity = convert.convertToEntity(dto);
+		entity.setData(new Date());
+		entity = dao.save(entity);
 		return convert.convertToDTO(entity);
 	}
 

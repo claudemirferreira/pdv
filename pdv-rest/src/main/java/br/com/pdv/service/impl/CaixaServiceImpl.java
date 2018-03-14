@@ -2,6 +2,7 @@ package br.com.pdv.service.impl;
 
 import br.com.pdv.convert.CaixaConvert;
 import br.com.pdv.dto.CaixaDTO;
+import br.com.pdv.enumerated.StatusCaixaEnum;
 import br.com.pdv.model.dao.CaixaDAO;
 import br.com.pdv.model.entity.Caixa;
 import br.com.pdv.model.entity.Usuario;
@@ -31,13 +32,14 @@ public class CaixaServiceImpl implements CaixaService {
 
 	@Override
 	public CaixaDTO save(CaixaDTO dto) {
-		if (existeCaixaAberto( dto)) {
+		if (existeCaixaAberto( dto.getUsuario().getId())) {
 			dto.setDataAbertura(new Date());
 			Usuario usuarioLogdo = new Usuario();
 			//TODO pegar o usuario logado
 			usuarioLogdo.setId(2l);
 			Caixa entity = convert.convertToEntity(dto);
 			entity.setUsuario(usuarioLogdo);
+			entity.setStatusCaixa(StatusCaixaEnum.ABERTO);
 			entity = dao.save(entity);
 			return convert.convertToDTO(entity);
 		}
@@ -55,8 +57,8 @@ public class CaixaServiceImpl implements CaixaService {
 	}
 
 	@Override
-	public boolean existeCaixaAberto(CaixaDTO dto) {
-		return dao.existeCaixaAberto(dto);
+	public boolean existeCaixaAberto(Long clienteId) {
+		return dao.existeCaixaAberto(clienteId);
 	}
 
 	@Override

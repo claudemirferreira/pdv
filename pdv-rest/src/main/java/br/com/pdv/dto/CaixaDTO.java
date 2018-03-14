@@ -39,6 +39,8 @@ public class CaixaDTO extends AbstractEntityDTO implements Serializable {
 
 	private List<SangriaDTO> sangrias;
 
+	private UsuarioDTO usuario;
+
     public CaixaDTO() {
     }
 
