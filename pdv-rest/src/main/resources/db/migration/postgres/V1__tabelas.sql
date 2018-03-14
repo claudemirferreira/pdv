@@ -1,9 +1,9 @@
 
-CREATE TABLE public.saa_usuario (
+CREATE TABLE saa_usuario (
                 usuario_id BIGINT NOT NULL,
+                user_name VARCHAR(20) NOT NULL,
                 first_name VARCHAR(20) NOT NULL,
                 last_name VARCHAR(60) NOT NULL,
-                user_name VARCHAR(20) NOT NULL,
                 password VARCHAR(100) NOT NULL,
                 email VARCHAR(100) NOT NULL,
                 token VARCHAR(100),
@@ -16,7 +16,7 @@ CREATE TABLE public.saa_usuario (
 );
 
 
-CREATE TABLE public.pdv_produto (
+CREATE TABLE pdv_produto (
                 produto_id BIGINT NOT NULL,
                 codigo_barra VARCHAR(15),
                 estoque BIGINT,
@@ -28,8 +28,9 @@ CREATE TABLE public.pdv_produto (
 );
 
 
-CREATE TABLE public.pdv_movimentacao (
+CREATE TABLE pdv_movimentacao (
                 movimentacao_id BIGINT NOT NULL,
+                usuario_id BIGINT NOT NULL,
                 data TIMESTAMP NOT NULL,
                 obs VARCHAR(100),
                 numero_nota_fiscal VARCHAR(15),
@@ -38,7 +39,7 @@ CREATE TABLE public.pdv_movimentacao (
 );
 
 
-CREATE TABLE public.pdv_movimentacao_produto (
+CREATE TABLE pdv_movimentacao_produto (
                 mov_pro_id BIGINT NOT NULL,
                 produto_id BIGINT NOT NULL,
                 movimentacao_id BIGINT NOT NULL,
@@ -47,7 +48,7 @@ CREATE TABLE public.pdv_movimentacao_produto (
 );
 
 
-CREATE TABLE public.pdv_cliente (
+CREATE TABLE pdv_cliente (
                 cliente_id BIGINT NOT NULL,
                 cpf VARCHAR(11),
                 rg VARCHAR(11) NOT NULL,
@@ -59,7 +60,7 @@ CREATE TABLE public.pdv_cliente (
 );
 
 
-CREATE TABLE public.pdv_caixa (
+CREATE TABLE pdv_caixa (
                 caixa_id BIGINT NOT NULL,
                 status_caixa INTEGER NOT NULL,
                 total_apurado NUMERIC(10,2),
@@ -72,7 +73,7 @@ CREATE TABLE public.pdv_caixa (
 );
 
 
-CREATE TABLE public.pdv_venda (
+CREATE TABLE pdv_venda (
                 venda_id BIGINT NOT NULL,
                 cliente_id BIGINT NOT NULL,
                 caixa_id BIGINT NOT NULL,
@@ -83,7 +84,7 @@ CREATE TABLE public.pdv_venda (
 );
 
 
-CREATE TABLE public.pdv_produto_venda (
+CREATE TABLE pdv_produto_venda (
                 prod_vend_id BIGINT NOT NULL,
                 venda_id BIGINT NOT NULL,
                 produto_id BIGINT NOT NULL,
@@ -93,7 +94,7 @@ CREATE TABLE public.pdv_produto_venda (
 );
 
 
-CREATE TABLE public.pdv_sangria (
+CREATE TABLE pdv_sangria (
                 sangria_id BIGINT NOT NULL,
                 caixa_id BIGINT NOT NULL,
                 data TIMESTAMP NOT NULL,
@@ -103,60 +104,96 @@ CREATE TABLE public.pdv_sangria (
 );
 
 
-ALTER TABLE public.pdv_caixa ADD CONSTRAINT fk92jpppcw89oxbdibnopcmnrfo
+CREATE TABLE schema_version
+(
+  installed_rank integer NOT NULL,
+  version character varying(50),
+  description character varying(200) NOT NULL,
+  type character varying(20) NOT NULL,
+  script character varying(1000) NOT NULL,
+  checksum integer,
+  installed_by character varying(100) NOT NULL,
+  installed_on timestamp without time zone NOT NULL DEFAULT now(),
+  execution_time integer NOT NULL,
+  success boolean NOT NULL,
+  CONSTRAINT schema_version_pk PRIMARY KEY (installed_rank)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE schema_version
+  OWNER TO root;
+
+-- Index: schema_version_s_idx
+
+-- DROP INDEX schema_version_s_idx;
+
+CREATE INDEX schema_version_s_idx
+  ON schema_version
+  USING btree
+  (success);
+
+
+
+ALTER TABLE pdv_caixa ADD CONSTRAINT fk92jpppcw89oxbdibnopcmnrfo
 FOREIGN KEY (usuario_id)
-REFERENCES public.saa_usuario (usuario_id)
+REFERENCES saa_usuario (usuario_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.pdv_movimentacao_produto ADD CONSTRAINT pdv_produto_pdv_movimentacao_produto_fk
+ALTER TABLE pdv_movimentacao ADD CONSTRAINT saa_usuario_pdv_movimentacao_fk
+FOREIGN KEY (usuario_id)
+REFERENCES saa_usuario (usuario_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE pdv_movimentacao_produto ADD CONSTRAINT pdv_produto_pdv_movimentacao_produto_fk
 FOREIGN KEY (produto_id)
-REFERENCES public.pdv_produto (produto_id)
+REFERENCES pdv_produto (produto_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.pdv_produto_venda ADD CONSTRAINT pdv_produto_pdv_produto_venda_fk
+ALTER TABLE pdv_produto_venda ADD CONSTRAINT pdv_produto_pdv_produto_venda_fk
 FOREIGN KEY (produto_id)
-REFERENCES public.pdv_produto (produto_id)
+REFERENCES pdv_produto (produto_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.pdv_movimentacao_produto ADD CONSTRAINT pdv_movimentacao_pdv_movimentacao_produto_fk
+ALTER TABLE pdv_movimentacao_produto ADD CONSTRAINT pdv_movimentacao_pdv_movimentacao_produto_fk
 FOREIGN KEY (movimentacao_id)
-REFERENCES public.pdv_movimentacao (movimentacao_id)
+REFERENCES pdv_movimentacao (movimentacao_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.pdv_venda ADD CONSTRAINT pdv_cliente_pdv_venda_fk
+ALTER TABLE pdv_venda ADD CONSTRAINT pdv_cliente_pdv_venda_fk
 FOREIGN KEY (cliente_id)
-REFERENCES public.pdv_cliente (cliente_id)
+REFERENCES pdv_cliente (cliente_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.pdv_sangria ADD CONSTRAINT pdv_caixa_pdv_sangria_fk
+ALTER TABLE pdv_sangria ADD CONSTRAINT pdv_caixa_pdv_sangria_fk
 FOREIGN KEY (caixa_id)
-REFERENCES public.pdv_caixa (caixa_id)
+REFERENCES pdv_caixa (caixa_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.pdv_venda ADD CONSTRAINT pdv_caixa_pdv_venda_fk
+ALTER TABLE pdv_venda ADD CONSTRAINT pdv_caixa_pdv_venda_fk
 FOREIGN KEY (caixa_id)
-REFERENCES public.pdv_caixa (caixa_id)
+REFERENCES pdv_caixa (caixa_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.pdv_produto_venda ADD CONSTRAINT pdv_venda_pdv_produto_venda_fk
+ALTER TABLE pdv_produto_venda ADD CONSTRAINT pdv_venda_pdv_produto_venda_fk
 FOREIGN KEY (venda_id)
-REFERENCES public.pdv_venda (venda_id)
+REFERENCES pdv_venda (venda_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
-
-insert into saa_usuario (email, first_name, last_name, password, token, user_name, usuario_id) values ('admin@gmail.com', 'Administrador', 'Sistema', '$2a$04$yYqzKO9VL7gD6C/Y7IoDb.E3q/7sZUnd4iaU55.udqA/lWBLC8S2u', null, 'admin', 2)

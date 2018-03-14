@@ -2,15 +2,10 @@ package br.com.pdv.model.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import br.com.pdv.enumerated.TipoMovimentacaoEnum;
 import lombok.Getter;
@@ -29,8 +24,10 @@ public class Movimentacao extends AbstractEntity implements Serializable {
 	@Column(name = "movimentacao_id")
 	private Long id;
 
-	@Column(nullable = false)
-	private LocalDate data;
+	@NotNull
+	@Column(columnDefinition= "TIMESTAMP WITH TIME ZONE")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data;
 
 	@Column(length = 15)
 	private String numeroNotaFiscal;
@@ -43,7 +40,7 @@ public class Movimentacao extends AbstractEntity implements Serializable {
 	@Column(nullable = false)	
 	private TipoMovimentacaoEnum tipoMovimentacao;
 
-	public Movimentacao(LocalDate data, String numeroNotaFiscal, String obs,
+	public Movimentacao(Date data, String numeroNotaFiscal, String obs,
 			TipoMovimentacaoEnum tipoMovimentacao) {
 		super();
 		this.data = data;

@@ -684,7 +684,7 @@
     <column id="COL213" populated="true" UUID="51d9da4a-a1e7-464a-89cb-084f17528b5e" autoIncrement="false" defaultValue="" name="descontos" nullable="0" physicalName="descontos" precision="10" referenceCount="1" scale="2" source-column-ref="COL78" sourceDataTypeName="numeric" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL214" populated="true" UUID="347e2d71-dcf1-4a36-8d25-634db7155c9c" autoIncrement="false" defaultValue="" name="data" nullable="0" physicalName="data" precision="0" referenceCount="1" scale="0" source-column-ref="COL79" sourceDataTypeName="date" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+    <column id="COL214" populated="true" UUID="347e2d71-dcf1-4a36-8d25-634db7155c9c" autoIncrement="false" defaultValue="" name="data" nullable="0" physicalName="data" precision="0" referenceCount="1" scale="0" source-column-ref="COL79" sourceDataTypeName="date" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
      <remarks></remarks>
     </column>
     </folder>
@@ -725,13 +725,13 @@
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.LiquibaseDDLGenerator" allow-connection="false"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="PDV_NEW"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB126" x="53" y="20" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB137" x="67" y="456" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB147" x="363" y="484" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB147" x="362" y="485" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB155" x="688" y="474" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB164" x="661" y="24" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB174" x="583" y="300" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
@@ -794,7 +794,14 @@
  <profiles topNCount="10">
   </profiles>
   <olap>
+   <olap-session id="0" db-ref="ppdb">
+    <Schema id="1" name="PDV_NEW"/>
+   </olap-session>
   </olap>
   <olap-gui>
+   <olap-edit-session osession-ref="0">
+    <play-pen zoom="1.0" viewportX="0" viewportY="0">
+    </play-pen>
+   </olap-edit-session>
   </olap-gui>
 </architect-project>
