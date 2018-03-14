@@ -32,24 +32,29 @@ public class Movimentacao extends AbstractEntity implements Serializable {
 	@Column(length = 15)
 	private String numeroNotaFiscal;
 
-
 	@Column(length = 100)
+	@NotNull
 	private String obs;
 
 	@Enumerated(EnumType.ORDINAL)
-	@Column(nullable = false)	
+	@Column
+	@NotNull
 	private TipoMovimentacaoEnum tipoMovimentacao;
 
+	@ManyToOne
+	@JoinColumn(name = "usuario_id", nullable = false)
+	private Usuario usuario;
+
 	public Movimentacao(Date data, String numeroNotaFiscal, String obs,
-			TipoMovimentacaoEnum tipoMovimentacao) {
+			TipoMovimentacaoEnum tipoMovimentacao, Usuario usuario) {
 		super();
 		this.data = data;
 		this.numeroNotaFiscal = numeroNotaFiscal;
 		this.obs = obs;
 		this.tipoMovimentacao = tipoMovimentacao;
+		this.usuario = usuario;
 	}
 
 	public Movimentacao() {
 	}
-	
 }
