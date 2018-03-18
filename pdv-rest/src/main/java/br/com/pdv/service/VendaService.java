@@ -16,4 +16,6 @@ public interface VendaService {
 
 	public void delete(Long id);
 
+	public VendaDTO realizarVenda(VendaDTO dto);
+
 }

@@ -40,8 +40,8 @@ public class ProdutoController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<PessoaDTO> save(@RequestBody PessoaDTO dto) {
-        //dto = service.save(dto);
+    public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto) {
+        dto = service.save(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

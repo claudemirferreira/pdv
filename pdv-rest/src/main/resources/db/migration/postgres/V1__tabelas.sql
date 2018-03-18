@@ -75,10 +75,10 @@ CREATE TABLE pdv_caixa (
 
 CREATE TABLE pdv_venda (
                 venda_id BIGINT NOT NULL,
-                cliente_id BIGINT NOT NULL,
+                cliente_id BIGINT,
                 caixa_id BIGINT NOT NULL,
                 total NUMERIC(10,2) NOT NULL,
-                descontos NUMERIC(10,2) NOT NULL,
+                descontos NUMERIC(10,2),
                 data DATE NOT NULL,
                 CONSTRAINT pdv_venda_id_pkey PRIMARY KEY (venda_id)
 );
@@ -135,7 +135,7 @@ CREATE INDEX schema_version_s_idx
 
 
 
-ALTER TABLE pdv_caixa ADD CONSTRAINT fk92jpppcw89oxbdibnopcmnrfo
+ALTER TABLE pdv_caixa ADD CONSTRAINT fk_caixa_usuario
 FOREIGN KEY (usuario_id)
 REFERENCES saa_usuario (usuario_id)
 ON DELETE NO ACTION

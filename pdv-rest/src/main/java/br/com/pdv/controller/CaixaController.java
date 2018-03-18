@@ -43,9 +43,18 @@ public class CaixaController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "abrir", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CaixaDTO> save(@RequestBody CaixaDTO dto) {
-        dto = service.save(dto);
+        dto = service.abrir(dto);
+        if (dto == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "fechar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CaixaDTO> fechar(@RequestBody CaixaDTO dto) {
+        dto = service.fechar(dto);
         if (dto == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

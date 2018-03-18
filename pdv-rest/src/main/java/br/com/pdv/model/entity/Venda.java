@@ -3,6 +3,7 @@ package br.com.pdv.model.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_venda")
+@Getter
+@Setter
 public class Venda extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
@@ -25,23 +28,15 @@ public class Venda extends AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "venda_id")
-	@Getter
-	@Setter
 	private Long id;
 
 	@Column(nullable = false)
-	@Getter
-	@Setter
-	private LocalDate data;
+	private Date data;
 
 	@Column(columnDefinition = "DECIMAL(10,2)")
-	@Getter
-	@Setter
 	private BigDecimal total;
 
 	@Column(columnDefinition = "DECIMAL(10,2)")
-	@Getter
-	@Setter
 	private BigDecimal descontos;
 
 	@ManyToOne

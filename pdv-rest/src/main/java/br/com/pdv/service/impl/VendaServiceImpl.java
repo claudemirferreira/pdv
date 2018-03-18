@@ -1,5 +1,6 @@
 package br.com.pdv.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -32,6 +33,12 @@ public class VendaServiceImpl implements VendaService {
 	public VendaDTO save(VendaDTO dto) {
 		Venda entity = dao.save(convert.convertToEntity(dto));
 		return convert.convertToDTO(entity);
+	}
+
+	@Override
+	public VendaDTO realizarVenda(VendaDTO dto) {
+		dto.setData(new Date());
+		return save(dto);
 	}
 
 	@Override

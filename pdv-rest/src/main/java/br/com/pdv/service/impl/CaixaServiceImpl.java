@@ -2,6 +2,7 @@ package br.com.pdv.service.impl;
 
 import br.com.pdv.convert.CaixaConvert;
 import br.com.pdv.dto.CaixaDTO;
+import br.com.pdv.dto.UsuarioDTO;
 import br.com.pdv.enumerated.StatusCaixaEnum;
 import br.com.pdv.model.dao.CaixaDAO;
 import br.com.pdv.model.entity.Caixa;
@@ -32,16 +33,26 @@ public class CaixaServiceImpl implements CaixaService {
 
 	@Override
 	public CaixaDTO save(CaixaDTO dto) {
-		if (existeCaixaAberto( dto.getUsuario().getId())) {
+		Caixa entity = convert.convertToEntity(dto);
+		return convert.convertToDTO(dao.save(entity));
+	}
+
+	@Override
+	public CaixaDTO abrir(CaixaDTO dto) {
+		if (existeCaixaAberto(dto.getUsuario().getId())) {
 			dto.setDataAbertura(new Date());
-			Usuario usuarioLogdo = new Usuario();
-			//TODO pegar o usuario logado
-			usuarioLogdo.setId(2l);
-			Caixa entity = convert.convertToEntity(dto);
-			entity.setUsuario(usuarioLogdo);
-			entity.setStatusCaixa(StatusCaixaEnum.ABERTO);
-			entity = dao.save(entity);
-			return convert.convertToDTO(entity);
+			dto.setStatusCaixa(StatusCaixaEnum.ABERTO);
+			return save(dto);
+		}
+		return null;
+	}
+
+	@Override
+	public CaixaDTO fechar(CaixaDTO dto) {
+		if (caixaEstaAberto(dto.getId())) {
+			dto.setDataFechamento(new Date());
+			dto.setStatusCaixa(StatusCaixaEnum.FECHADO);
+			return save(dto);
 		}
 		return null;
 	}
@@ -59,6 +70,11 @@ public class CaixaServiceImpl implements CaixaService {
 	@Override
 	public boolean existeCaixaAberto(Long clienteId) {
 		return dao.existeCaixaAberto(clienteId);
+	}
+
+	@Override
+	public boolean caixaEstaAberto(Long caixaId) {
+		return dao.caixaEstaAberto(caixaId);
 	}
 
 	@Override

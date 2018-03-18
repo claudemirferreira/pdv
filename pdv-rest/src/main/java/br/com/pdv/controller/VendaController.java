@@ -45,7 +45,7 @@ public class VendaController {
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VendaDTO> save(@RequestBody VendaDTO dto) {
-        dto = service.save(dto);
+        dto = service.realizarVenda(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
