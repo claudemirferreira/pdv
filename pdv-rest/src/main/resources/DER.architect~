@@ -437,7 +437,7 @@
     <column id="COL139" populated="true" UUID="9d4874ed-e6bc-45d9-86ee-43eba4cfafdd" autoIncrement="false" defaultValue="" name="cpf" nullable="1" physicalName="cpf" precision="11" referenceCount="1" scale="0" source-column-ref="COL19" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL140" populated="true" UUID="003a2123-878a-4d85-8767-51028b5fb3e2" autoIncrement="false" defaultValue="" name="rg" nullable="0" physicalName="rg" precision="11" referenceCount="1" scale="0" source-column-ref="COL20" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL140" populated="true" UUID="003a2123-878a-4d85-8767-51028b5fb3e2" autoIncrement="false" defaultValue="" name="rg" nullable="1" physicalName="rg" precision="11" referenceCount="1" scale="0" source-column-ref="COL20" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL141" populated="true" UUID="3288a006-5b05-4311-9ece-1cb66df0e9f4" autoIncrement="false" defaultValue="" name="endereco" nullable="1" physicalName="endereco" precision="100" referenceCount="1" scale="0" source-column-ref="COL21" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
@@ -541,7 +541,7 @@
     <column id="COL170" populated="true" UUID="cfb910c7-f82d-4608-9aca-ef50de404c33" autoIncrement="false" defaultValue="" name="preco_custo" nullable="1" physicalName="preco_custo" precision="10" referenceCount="1" scale="2" source-column-ref="COL49" sourceDataTypeName="numeric" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL171" populated="true" UUID="5d57de71-fb27-4d54-9f7b-60a846145894" autoIncrement="false" defaultValue="" name="preco_venda" nullable="0" physicalName="preco_venda" precision="10" referenceCount="1" scale="2" source-column-ref="COL50" sourceDataTypeName="numeric" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
+    <column id="COL171" populated="true" UUID="5d57de71-fb27-4d54-9f7b-60a846145894" autoIncrement="false" defaultValue="" name="preco_venda" nullable="1" physicalName="preco_venda" precision="10" referenceCount="1" scale="2" source-column-ref="COL50" sourceDataTypeName="numeric" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
     <column id="COL172" populated="true" UUID="fd4cc589-1b47-405c-8e78-2f863a3e6593" autoIncrement="false" defaultValue="" name="unidade_medida" nullable="1" physicalName="unidade_medida" precision="0" referenceCount="1" scale="0" source-column-ref="COL51" sourceDataTypeName="int4" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -675,7 +675,7 @@
     <column id="COL210" populated="true" UUID="8f3fbd69-37fd-4aa0-b9d8-3efd66e5fc49" autoIncrement="false" defaultValue="" name="venda_id" nullable="0" physicalName="venda_id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL74" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
      <remarks></remarks>
     </column>
-    <column id="COL211" populated="true" UUID="9e58f448-2db5-4155-b024-2952fdf9073d" autoIncrement="false" defaultValue="" name="cliente_id" nullable="0" physicalName="cliente_id" precision="0" referenceCount="2" scale="0" source-column-ref="COL75" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+    <column id="COL211" populated="true" UUID="9e58f448-2db5-4155-b024-2952fdf9073d" autoIncrement="false" defaultValue="" name="cliente_id" nullable="1" physicalName="cliente_id" precision="0" referenceCount="2" scale="0" source-column-ref="COL75" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
      <remarks></remarks>
     </column>
     <column id="COL212" populated="true" UUID="e70c77e0-b6c1-44b7-8845-38f900997ad8" autoIncrement="false" defaultValue="" name="caixa_id" nullable="0" physicalName="caixa_id" precision="0" referenceCount="2" scale="0" source-column-ref="COL76" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
@@ -684,10 +684,10 @@
     <column id="COL213" populated="true" UUID="a162b3ee-99fc-4359-a304-1c0b61e3237f" autoIncrement="false" defaultValue="" name="total" nullable="0" physicalName="total" precision="10" referenceCount="1" scale="2" source-column-ref="COL77" sourceDataTypeName="numeric" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL214" populated="true" UUID="51d9da4a-a1e7-464a-89cb-084f17528b5e" autoIncrement="false" defaultValue="" name="descontos" nullable="0" physicalName="descontos" precision="10" referenceCount="1" scale="2" source-column-ref="COL78" sourceDataTypeName="numeric" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
+    <column id="COL214" populated="true" UUID="51d9da4a-a1e7-464a-89cb-084f17528b5e" autoIncrement="false" defaultValue="" name="descontos" nullable="1" physicalName="descontos" precision="10" referenceCount="1" scale="2" source-column-ref="COL78" sourceDataTypeName="numeric" type="2" userDefinedTypeUUID="115245ce-612c-4d6a-b559-6dd903dd959a" >
      <remarks></remarks>
     </column>
-    <column id="COL215" populated="true" UUID="347e2d71-dcf1-4a36-8d25-634db7155c9c" autoIncrement="false" defaultValue="" name="data" nullable="0" physicalName="data" precision="0" referenceCount="1" scale="0" source-column-ref="COL79" sourceDataTypeName="date" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+    <column id="COL215" populated="true" UUID="347e2d71-dcf1-4a36-8d25-634db7155c9c" autoIncrement="false" defaultValue="" name="data" nullable="0" physicalName="data" precision="0" referenceCount="1" scale="0" source-column-ref="COL79" sourceDataTypeName="date" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
      <remarks></remarks>
     </column>
     </folder>
@@ -720,8 +720,8 @@
    <relationship id="REL228" populated="true" UUID="338f97a3-4438-4ec2-afbd-de8ba842a8db" deferrability="7" deleteRule="3" fk-table-ref="TAB175" fkCardinality="7" identifying="true" name="pdv_produto_pdv_produto_venda_fk" physicalName="pdv_produto_pdv_produto_venda_fk" pk-table-ref="TAB165" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP229" populated="true" UUID="c443c2b2-0e6d-4460-a3b1-e16669e95496" fk-column-ref="COL178" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL166" />
    </relationship>
-   <relationship id="REL230" populated="true" UUID="37040cab-7478-4f95-852b-c11040cd385d" deferrability="7" deleteRule="3" fk-table-ref="TAB126" fkCardinality="7" identifying="false" name="fk92jpppcw89oxbdibnopcmnrfo" physicalName="fk92jpppcw89oxbdibnopcmnrfo" pk-table-ref="TAB194" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP231" populated="true" UUID="727f4262-aba8-4968-bece-9a08ccddd11a" fk-column-ref="COL132" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL195" />
+   <relationship id="REL230" populated="true" UUID="37040cab-7478-4f95-852b-c11040cd385d" deferrability="7" deleteRule="3" fk-table-ref="TAB126" fkCardinality="7" identifying="false" name="fk_pdv_caixa_saa_usuario_usuario_id" physicalName="fk_pdv_caixa_saa_usuario_usuario_id" pk-table-ref="TAB194" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP231" populated="true" UUID="de80548e-5b2f-4898-90ea-a73130ffc9ba" fk-column-ref="COL132" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL195" />
    </relationship>
    <relationship id="REL232" populated="true" UUID="ee432b3b-d684-4270-8499-395488c9e9c1" deferrability="7" deleteRule="3" fk-table-ref="TAB147" fkCardinality="7" identifying="true" name="saa_usuario_pdv_movimentacao_fk" physicalName="saa_usuario_pdv_movimentacao_fk" pk-table-ref="TAB194" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP233" populated="true" UUID="204beca2-f7bc-47da-9147-5cdc444e298c" fk-column-ref="COL149" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL195" />
@@ -731,7 +731,7 @@
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="PDV_NEW"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="pdv"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">

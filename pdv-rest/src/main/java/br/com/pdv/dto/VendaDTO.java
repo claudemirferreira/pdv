@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import br.com.pdv.model.entity.Caixa;
 import br.com.pdv.model.entity.Cliente;
@@ -29,5 +30,7 @@ public class VendaDTO extends AbstractEntityDTO implements Serializable {
 	private Caixa caixa;
 
 	private Cliente cliente;
+
+	private List<ProdutoVendaDTO> produtoVendas;
 
 }
