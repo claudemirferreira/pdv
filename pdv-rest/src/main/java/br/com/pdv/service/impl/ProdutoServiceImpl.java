@@ -39,7 +39,6 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public Page<ProdutoDTO> filter(ProdutoFilter fileter, Integer page, Integer size) {
-		final PageRequest pageRequest = getPageRequest(page, size);
 		final Page<Produto> result = filterProdutoPaginated(fileter, page, size);
 		return result.map(this::getProdutoDto);
 	}

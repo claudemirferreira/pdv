@@ -29,7 +29,6 @@ export class ApiService {
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
     let headers = this.getHeader();
-    console.log(params)
     return this.http.get(`${environment.api_url}${path}`, {params: params,headers: headers})
       .pipe(catchError(this.formatErrors));
   }

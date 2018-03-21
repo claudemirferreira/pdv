@@ -8,6 +8,8 @@ export class ObjectsPaginated {
   public sort: any;
   public totalElements: number;
   public totalPages: number;
+  public totalPagesArray: any[] = [];
   public content: any[] = [];
+  public currentPage: number;
 
 }

@@ -1,11 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {routerTransition} from "../../router.animations";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {Produto} from "../../shared/model/produto.model";
 import {Router} from "@angular/router";
-import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ProductsService} from "./products.service";
 import {ObjectsPaginated} from "../../shared/model/objects-paginated.model";
+
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-products-search',
@@ -17,6 +19,7 @@ export class ProductsSearchComponent implements OnInit {
 
   product: Produto;
   objects: ObjectsPaginated;
+  totalPagesArray: any[] = [];
   productForm: FormGroup;
 
 
@@ -39,22 +42,38 @@ export class ProductsSearchComponent implements OnInit {
     });
   }
 
-  search() {
-    console.log(this.product)
-    this.service.searchProducts(this.product).subscribe(
+  search(page:number = 0, size: number = 5) {
+    this.service.searchProducts(this.product, page).subscribe(
       (data: any) => {
         this.objects = data;
-        console.log(this.objects)
+        this.configRange()
       },(data: any) =>  {
         console.log("Erro")
       }
     );
-
   }
 
   setPage(page: number) {
-    console.log(page)
+    if(page < 0 || page > this.objects.totalPages) {
+      return;
+    }
+    
+    this.objects.number = page;
+    this.getElements(page)
   }
 
+  private getElements(page:number = 0, size: number = 5) {
+    this.service.searchProducts(this.product, page).subscribe(
+      (data: any) => {
+        this.objects = data;
+      },(data: any) =>  {
+        console.log("Erro")
+      }
+    );
+  }
+
+  private configRange() {
+    this.totalPagesArray = _.range(this.objects.number, this.objects.totalPages);
+  }
 
 }

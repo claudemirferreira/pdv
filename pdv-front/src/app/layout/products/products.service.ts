@@ -14,8 +14,12 @@ export class ProductsService {
         return this.apiService.post("/produtos",{produto: product});
     }
 
-    searchProducts(product: Produto) {
-      let params = new HttpParams().set("nome", product.nome).set("codigoBarra", product.codigoBarra);
+    searchProducts(product: Produto, page: number = 0, size: number = 5) {
+      let params = new HttpParams()
+        .set("nome", product.nome)
+        .set("codigoBarra", product.codigoBarra)
+        .set("page", page.toString())
+        .set("size", size.toString());
       return this.apiService.get("/produtos/filter", params);
     }
 

@@ -84,29 +84,37 @@
       <div class="card-body table-responsive">
 
         <nav aria-label="Produtos">
+
+
           <ul *ngIf="objects.totalPages >= 1" class="pagination" >
 
 
-
-            <li class="page-item" [ngClass]="{disabled:objects.first === true}">
-              <a class="page-link" (click)="setPage(1)" aria-label="Previous">
+            <li class="page-item" [ngClass]="{disabled:objects.first}">
+              <a class="page-link" (click)="setPage(0)" aria-label="Previous">
                 <span aria-hidden="true">Fists</span>
               </a>
             </li>
 
-            <li class="page-item" [ngClass]="{disabled:objects.first === true}">
+            <li class="page-item" [ngClass]="{disabled:objects.first}">
               <a class="page-link" (click)="setPage(objects.number - 1)" aria-label="Previous">
                 <span aria-hidden="true">Previous</span>
               </a>
             </li>
 
-            <!--<li class="page-item"  *ngFor="let page of objects.totalPages; let i=index" [ngClass]="{active:objects.number === page}">-->
-              <!--<a (click)="setPage(page)">{{page}}</a>-->
-            <!--</li>-->
+            <li class="page-item"  *ngFor="let page of totalPagesArray" [ngClass]="{active:objects.number === page}">
+              <a class="page-link" (click)="setPage(page)">
+                <span aria-hidden="true">{{page + 1}}</span>
+              </a>
+            </li>
 
+            <li class="page-item" [ngClass]="{disabled:objects.last}">
+              <a class="page-link" (click)="setPage(objects.number + 1)" aria-label="Previous">
+                <span aria-hidden="true">Next</span>
+              </a>
+            </li>
 
-            <li class="page-item" [ngClass]="{disabled:objects.number === objects.totalPages}">
-              <a class="page-link" (click)="setPage(objects.totalPages)">
+            <li class="page-item" [ngClass]="{disabled:objects.last}">
+              <a class="page-link" (click)="setPage(objects.totalPages - 1 )">
                 <span aria-hidden="true">Last</span>
               </a>
             </li>
@@ -115,6 +123,7 @@
           </ul>
 
         </nav>
+
 
       </div>
     </div>
