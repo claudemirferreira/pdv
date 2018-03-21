@@ -91,13 +91,13 @@
 
             <li class="page-item" [ngClass]="{disabled:objects.first}">
               <a class="page-link" (click)="setPage(0)" aria-label="Previous">
-                <span aria-hidden="true">Fists</span>
+                <span aria-hidden="true">Primeiro</span>
               </a>
             </li>
 
             <li class="page-item" [ngClass]="{disabled:objects.first}">
               <a class="page-link" (click)="setPage(objects.number - 1)" aria-label="Previous">
-                <span aria-hidden="true">Previous</span>
+                <span aria-hidden="true">Anterior</span>
               </a>
             </li>
 
@@ -109,13 +109,13 @@
 
             <li class="page-item" [ngClass]="{disabled:objects.last}">
               <a class="page-link" (click)="setPage(objects.number + 1)" aria-label="Previous">
-                <span aria-hidden="true">Next</span>
+                <span aria-hidden="true">Próximo</span>
               </a>
             </li>
 
             <li class="page-item" [ngClass]="{disabled:objects.last}">
               <a class="page-link" (click)="setPage(objects.totalPages - 1 )">
-                <span aria-hidden="true">Last</span>
+                <span aria-hidden="true">Ultimo</span>
               </a>
             </li>
 
