@@ -3,7 +3,7 @@ import {routerTransition} from "../../router.animations";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Produto} from "../../shared/model/produto.model";
 import {Router} from "@angular/router";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalDismissReasons, NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {ProductsService} from "./products.service";
 import {ObjectsPaginated} from "../../shared/model/objects-paginated.model";
 
@@ -17,11 +17,13 @@ import * as _ from 'underscore';
 })
 export class ProductsSearchComponent implements OnInit {
 
+  private modalRef: NgbModalRef;
+
   product: Produto;
   objects: ObjectsPaginated;
   totalPagesArray: any[] = [];
   productForm: FormGroup;
-
+  closeResult: string;
 
   constructor(private form: FormBuilder,
               private router: Router,
@@ -57,9 +59,27 @@ export class ProductsSearchComponent implements OnInit {
     if(page < 0 || page > this.objects.totalPages) {
       return;
     }
-    
+
     this.objects.number = page;
     this.getElements(page)
+  }
+
+  removeProduct(id: number) {
+    this.service.removeProduct(id).toPromise()
+      .then(res => {
+        this.setPage(this.objects.number)
+      }, msg => {
+        console.error(msg);
+      })
+  }
+
+  openDeleteDialog(content) {
+    this.modalRef = this.modalService.open(content);
+    this.modalRef.result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
   private getElements(page:number = 0, size: number = 5) {
@@ -74,6 +94,16 @@ export class ProductsSearchComponent implements OnInit {
 
   private configRange() {
     this.totalPagesArray = _.range(this.objects.number, this.objects.totalPages);
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
 }

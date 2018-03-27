@@ -64,16 +64,26 @@
                 <th>C.Barra</th>
                 <th>Nome</th>
                 <th>Preco Venda</th>
-                <th>Aćões</th>
+                <th>Editar</th>
+                <th>Remover</th>
               </tr>
               </thead>
 
               <tbody>
-              <tr *ngFor="let p of objects.content">
+              <tr *ngFor="let p of objects.content; let i = index" >
                 <th scope="row">{{p.codigoBarra}}</th>
                 <td>{{p.nome}}</td>
                 <td>{{p.precoVenda}}</td>
-                <td>Editar Excluir</td>
+                <td>
+                  <p>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/></svg>
+                  </p>
+                </td>
+                <td>
+                  <p class="link-with-hand" (click)="removeProduct(p.id)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zm-2-5H3V7h8v2z"/></svg>
+                  </p>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -124,6 +134,25 @@
 
         </nav>
 
+
+        <div class="card-body" >
+          <ng-template #content let-c="close" let-d="dismiss" >
+            <div class="modal-header">
+              <h4 class="modal-title">Remover</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Remover Produto</p>
+              <p>Deseja Remover um produto já cadastrado ?</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" type="button" (click)="clearForm(content)">Sim</button>
+              <button type="button" class="btn btn-secondary" (click)="goToDashboard()">Não</button>
+            </div>
+          </ng-template>
+        </div>
 
       </div>
     </div>

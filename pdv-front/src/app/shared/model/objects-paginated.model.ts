@@ -1,3 +1,5 @@
+import {Produto} from "./produto.model";
+
 export class ObjectsPaginated {
 
   public first: Boolean;
@@ -9,7 +11,7 @@ export class ObjectsPaginated {
   public totalElements: number;
   public totalPages: number;
   public totalPagesArray: any[] = [];
-  public content: any[] = [];
+  public content: Produto[] = [];
   public currentPage: number;
 
 }

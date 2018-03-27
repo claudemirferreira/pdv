@@ -56,9 +56,9 @@ public class ProdutoController {
     }
 
     @DeleteMapping(value = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> delete(@PathVariable(value = "id") String id) {
-        service.delete(new Long(id));
-        return new ResponseEntity<>(id, HttpStatus.OK);
+    public ResponseEntity<String> delete(@PathVariable(value = "id") Long id) {
+        service.delete(id);
+        return new ResponseEntity(id, HttpStatus.OK);
     }
 
     @PostMapping(

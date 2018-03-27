@@ -23,4 +23,8 @@ export class ProductsService {
       return this.apiService.get("/produtos/filter", params);
     }
 
+    removeProduct(idProduct: number) {
+      return  this.apiService.delete("/produtos/" + idProduct)
+    }
+
 }
