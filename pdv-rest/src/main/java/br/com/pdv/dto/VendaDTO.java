@@ -27,9 +27,9 @@ public class VendaDTO extends AbstractEntityDTO implements Serializable {
 
 	private BigDecimal descontos;
 
-	private Caixa caixa;
+	private CaixaDTO caixa;
 
-	private Cliente cliente;
+	private ClienteDTO cliente;
 
 	private List<ProdutoVendaDTO> produtoVendas;
 

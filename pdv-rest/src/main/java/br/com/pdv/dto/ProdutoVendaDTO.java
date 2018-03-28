@@ -22,8 +22,8 @@ public class ProdutoVendaDTO extends AbstractEntityDTO implements Serializable {
 
 	private Long quantidade;
 
-	private Produto produto;
+	private ProdutoDTO produto;
 
-	private Venda venda;
+	private VendaDTO venda;
 
 }

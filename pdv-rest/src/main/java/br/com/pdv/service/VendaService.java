@@ -3,6 +3,7 @@ package br.com.pdv.service;
 import java.util.List;
 
 import br.com.pdv.dto.VendaDTO;
+import br.com.pdv.model.entity.Venda;
 
 public interface VendaService {
 
@@ -17,5 +18,7 @@ public interface VendaService {
 	public void delete(Long id);
 
 	public VendaDTO realizarVenda(VendaDTO dto);
+
+	public VendaDTO salvarProdutos(VendaDTO venda);
 
 }

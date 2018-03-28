@@ -2,18 +2,12 @@ package br.com.pdv.model.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +25,9 @@ public class Venda extends AbstractEntity implements Serializable {
 	@Column(name = "venda_id")
 	private Long id;
 
+	@OneToMany(mappedBy = "venda")
+	private List<ProdutoVenda> produtoVendas;
+
 	@Column(nullable = false)
 	private Date data;
 
@@ -47,7 +44,4 @@ public class Venda extends AbstractEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-
-	private List<ProdutoVenda> produtoVendas;
-
 }
