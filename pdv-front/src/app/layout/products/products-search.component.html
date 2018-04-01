@@ -80,7 +80,7 @@
                   </p>
                 </td>
                 <td>
-                  <p class="link-with-hand" (click)="removeProduct(p.id)">
+                  <p class="link-with-hand" (click)="openDeleteDialog(content, p.id)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M13 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 13H1V2h12v12zm-2-5H3V7h8v2z"/></svg>
                   </p>
                 </td>
@@ -129,27 +129,24 @@
               </a>
             </li>
 
-
           </ul>
 
         </nav>
 
-
         <div class="card-body" >
           <ng-template #content let-c="close" let-d="dismiss" >
             <div class="modal-header">
-              <h4 class="modal-title">Remover</h4>
+              <h4 class="modal-title">Remover produto</h4>
               <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>Remover Produto</p>
-              <p>Deseja Remover um produto já cadastrado ?</p>
+              <p>Realmente deseja remover o produto?</p>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" type="button" (click)="clearForm(content)">Sim</button>
-              <button type="button" class="btn btn-secondary" (click)="goToDashboard()">Não</button>
+              <button class="btn btn-primary" type="button" (click)="removeProduct()">Sim</button>
+              <button type="button" class="btn btn-secondary" (click)="c('Close click')">Não</button>
             </div>
           </ng-template>
         </div>

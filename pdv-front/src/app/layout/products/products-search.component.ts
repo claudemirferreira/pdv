@@ -18,12 +18,14 @@ import * as _ from 'underscore';
 export class ProductsSearchComponent implements OnInit {
 
   private modalRef: NgbModalRef;
+  private idONDelete : number;
 
   product: Produto;
   objects: ObjectsPaginated;
   totalPagesArray: any[] = [];
   productForm: FormGroup;
   closeResult: string;
+  showRemovedSucces: boolean;
 
   constructor(private form: FormBuilder,
               private router: Router,
@@ -35,6 +37,7 @@ export class ProductsSearchComponent implements OnInit {
     this.product = new Produto();
     this.objects = new ObjectsPaginated();
     this.configureForm();
+    this.showRemovedSucces = false;
   }
 
   configureForm() {
@@ -64,17 +67,21 @@ export class ProductsSearchComponent implements OnInit {
     this.getElements(page)
   }
 
-  removeProduct(id: number) {
-    this.service.removeProduct(id).toPromise()
+  removeProduct() {
+    this.service.removeProduct(this.idONDelete).toPromise()
       .then(res => {
         this.setPage(this.objects.number)
+        this.idONDelete = null;
+        this.modalRef.close();
       }, msg => {
         console.error(msg);
       })
   }
 
-  openDeleteDialog(content) {
+  openDeleteDialog(content: any, item: number) {
     this.modalRef = this.modalService.open(content);
+    this.idONDelete = item;
+
     this.modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
