@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-@Getter
+//@Getter
 @JsonRootName("user")
 @NoArgsConstructor
 public class LoginParam {
@@ -15,4 +15,12 @@ public class LoginParam {
     private String email;
     @NotBlank(message = "can't be empty")
     private String password;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

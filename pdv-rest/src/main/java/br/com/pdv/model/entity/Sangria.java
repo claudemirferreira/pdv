@@ -3,21 +3,18 @@ package br.com.pdv.model.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "pdv_sangria")
+@Getter
+@Setter
 public class Sangria extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 4203174084588806620L;
@@ -25,22 +22,16 @@ public class Sangria extends AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "sangria_id")
-	@Getter
-	@Setter
 	private Long id;
 
-	@Column(nullable = false)
-	@Getter
-	@Setter
-	private LocalDate data;
+	@NotNull
+	@Column(columnDefinition= "TIMESTAMP WITH TIME ZONE")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data;
 
 	@Column(columnDefinition = "DECIMAL(10,2)")
-	@Getter
-	@Setter
 	private BigDecimal valor;
 
-	@Getter
-	@Setter
 	@Column(length = 100)
 	private String obs;
 

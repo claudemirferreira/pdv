@@ -16,14 +16,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
 	@Bean
-	public Docket api​() {
+	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("br.com.pdv.controller")).paths(PathSelectors.any()).build();
 	}
 
-	private ApiInfo apiInfo​() {
+	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Swagger API")
-				.description("Documentação​ ​ da​ ​ API​ ​ de​ ​ acesso​ ​ aos​ ​ endpoints​ ​ com​ ​ Swagger")
+				.description("Documentacao endpoint")
 				.version("1.0").build();
 	}
 }

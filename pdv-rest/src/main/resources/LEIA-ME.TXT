@@ -1,0 +1,13 @@
+
+-- levantar a aplicacao
+gradle bootRun
+
+---
+[13:31, 21/2/2018] Nelson Sozinho: Content-Type:application/json
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNTE4NzA1MTg5fQ.ILHdIqRk7m48j0u9BP3Lqj2gYcg9hgw4JLowAorkTQ4vzLMBbQzUa_Y5TwaxeAPBDf9BG5-tIN7jIX2-Ky1CnQ
+[13:31, 21/2/2018] Nelson Sozinho: esse � o token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNTE4NzA1MTg5fQ.ILHdIqRk7m48j0u9BP3Lqj2gYcg9hgw4JLowAorkTQ4vzLMBbQzUa_Y5TwaxeAPBDf9BG5-tIN7jIX2-Ky1CnQ
+[13:31, 21/2/2018] Nelson Sozinho: s� substitui
+[13:35, 21/2/2018] Nelson Sozinho: onde tu colocou token, tu coloca�isso: Authorization:Bearer
+
+Authorization:Bearer=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNTE5NDkxOTc4fQ.CZv1CHxB8Zv_GYbNJtWVuqJnNUcU20JzuN_d-fbehCIlR4arpKmZE1FdZrUqv6T-YVO0CxHu0J0whCghT3LM5A
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNTIwOTYyMDk3fQ.kIc1aq1O68v55K9JVpu2n3ETmIgqVD3HSNsxfUJMpvE2m9cjoPgPAax4KW3vDtzAoP-m6Uy0LjR3USrJ06KWNQ

@@ -3,7 +3,11 @@ package br.com.pdv.controller;
 import java.awt.print.Pageable;
 import java.util.List;
 
+<<<<<<< HEAD
 import br.com.pdv.controller.param.ProdutoFilter;
+=======
+import br.com.pdv.dto.PessoaDTO;
+>>>>>>> gradle/config
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -61,11 +65,9 @@ public class ProdutoController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PostMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto, BindingResult bindingResult) {
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO dto) {
         dto = service.save(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

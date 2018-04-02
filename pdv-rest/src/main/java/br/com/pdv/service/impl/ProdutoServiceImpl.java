@@ -3,6 +3,7 @@ package br.com.pdv.service.impl;
 import br.com.pdv.controller.param.ProdutoFilter;
 import br.com.pdv.convert.ProdutoConvert;
 import br.com.pdv.dto.ProdutoDTO;
+import br.com.pdv.model.dao.ProdutoVendaDAO;
 import br.com.pdv.model.entity.Produto;
 import br.com.pdv.repository.ProdutoRepository;
 import br.com.pdv.service.ProdutoService;

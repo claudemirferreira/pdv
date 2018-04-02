@@ -60,7 +60,7 @@ spring:
   profiles: test
   datasource:
     platform: postgres
-    url: jdbc:postgresql://${postgres.hostname:localhost}:${postgres.port:5432}/pdv-test
+    url: jdbc:postgresql://${postgres.hostname:localhost}:${postgres.port:5432}/pdv_test
     driver-class-name: org.postgresql.Driver
     username: ${postgres.user:root}
     password: ${postgres.password:root}

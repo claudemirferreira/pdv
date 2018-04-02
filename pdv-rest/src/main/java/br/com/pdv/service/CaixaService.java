@@ -16,4 +16,12 @@ public interface CaixaService {
 
 	public void delete(Long id);
 
+	public boolean existeCaixaAberto(Long clienteId);
+
+	public boolean caixaEstaAberto(Long caixaId);
+
+	public CaixaDTO abrir(CaixaDTO dto);
+
+	public CaixaDTO fechar(CaixaDTO dto);
+
 }

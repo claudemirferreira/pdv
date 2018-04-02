@@ -2,7 +2,7 @@ package br.com.pdv.enumerated;
 
 public enum StatusCaixaEnum {
 
-	UNIDADE(0, "ABERTO"), PESO(1, "FECHADO"),;
+	ABERTO(0, "ABERTO"), FECHADO(1, "FECHADO"),;
 
 	private int codigo;
 

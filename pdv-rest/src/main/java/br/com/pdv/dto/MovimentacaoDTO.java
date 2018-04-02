@@ -2,6 +2,7 @@ package br.com.pdv.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import br.com.pdv.enumerated.TipoMovimentacaoEnum;
 import lombok.Getter;
@@ -13,24 +14,13 @@ public class MovimentacaoDTO extends AbstractEntityDTO implements Serializable {
 
 	private static final long serialVersionUID = -6749284348474933705L;
 
-	@Getter
-	@Setter
-	private Long id;
+	private Date data;
 
-	@Getter
-	@Setter
-	private LocalDate data;
-
-	@Getter
-	@Setter
 	private String numeroNotaFiscal;
 
-	@Getter
-	@Setter
 	private String obs;
 
-	@Getter
-	@Setter
 	private TipoMovimentacaoEnum tipoMovimentacao;
 
+	private  UsuarioDTO usuario;
 }
