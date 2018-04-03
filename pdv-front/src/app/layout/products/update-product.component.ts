@@ -1,7 +1,7 @@
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Component, OnInit} from '@angular/core';
 import {routerTransition} from '../../router.animations';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {ModalDismissReasons, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 import {Produto} from '../../shared/model/produto.model';
@@ -26,7 +26,6 @@ export class ProductsComponent implements OnInit {
 
   constructor(private form: FormBuilder,
               private router: Router,
-              private route: ActivatedRoute,
               private service: ProductsService,
               private modalService: NgbModal) {
   }
@@ -35,7 +34,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.product = new Produto();
     this.configureForm();
-    this.editLoadData();
   }
 
   configureForm() {
@@ -83,23 +81,6 @@ export class ProductsComponent implements OnInit {
     this.product = new Produto();
     this.productForm.reset();
     this.modalRef.close();
-  }
-
-  private editLoadData() {
-    this.route.params.subscribe(ps => {
-      let idProduct = ps['idProduct'];
-      if(idProduct) {
-        this.service.getProduct(idProduct).subscribe(
-          (data: Produto) => {
-            console.log("carregando produto");
-            this.product = data;
-          }, (error) => {
-
-          }
-
-        )
-      }
-    })
   }
 
   private getDismissReason(reason: any): string {

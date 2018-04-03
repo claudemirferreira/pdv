@@ -67,7 +67,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public ProdutoDTO findId(Long id) {
-		return convert.convertToDTO(produtoRepository.findOne(id));
+		Produto produto = produtoRepository.findOne(id);
+		return convert.convertToDTO(produto, ProdutoDTO.class);
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 	@Override
 	public ProdutoDTO update(ProdutoDTO dto) {
 		Produto entity = produtoRepository.save(convert.convertToEntity(dto)) ;
-		return convert.convertToDTO(entity);
+		return convert.convertToDTO(entity, ProdutoDTO.class);
 	}
 
 	private Specification<Produto> getSpecifications(final ProdutoFilter filter) {
@@ -108,7 +109,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	private ProdutoDTO getProdutoDto(Produto produto) {
 		ProdutoDTO dto = new ProdutoDTO();
-		dto.setProduto(produto);
+		dto = convert.convertToDTO(produto, ProdutoDTO.class);
 		return dto;
 	}
 

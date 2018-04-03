@@ -27,4 +27,8 @@ export class ProductsService {
       return  this.apiService.delete("/produtos/" + idProduct)
     }
 
+    getProduct(idProduct: number) {
+      return this.apiService.get("/produtos/" + idProduct)
+    }
+
 }

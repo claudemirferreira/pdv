@@ -14,7 +14,7 @@ public class ProdutoConvert {
 
 	private ModelMapper modelMapper = new ModelMapper();
 
-	public ProdutoDTO convertToDTO(Produto entity) {
+	public ProdutoDTO convertToDTO(Produto entity, Class<ProdutoDTO> produtoDTOClass) {
 		ProdutoDTO dto = modelMapper.map(entity, ProdutoDTO.class);
 		return dto;
 	}
@@ -25,7 +25,7 @@ public class ProdutoConvert {
 
 	public List<ProdutoDTO> convertToDTO(List<Produto> list) {
 		List<ProdutoDTO> result = new ArrayList<>();
-		list.stream().forEach(l -> result.add(convertToDTO(l)));
+		list.stream().forEach(l -> result.add(convertToDTO(l, ProdutoDTO.class)));
 		return result;
 	}
 
