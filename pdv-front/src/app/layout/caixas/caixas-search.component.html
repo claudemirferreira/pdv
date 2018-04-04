@@ -1,0 +1,97 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Caixas'" [icon]="'fa-edit'"></app-page-header>
+
+
+  <form [formGroup]="caixaForm">
+
+    <div class="form-content">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-4">
+            <fieldset class="form-group">
+              <label>Status do Caixa</label>
+              <input
+                class="form-control"
+                placeholder="|||"
+                [(ngModel)]="caixa.statusCaixa"
+                formControlName="statusCaixa"
+                id="statusCaixa"
+                name="statusCaixa">
+            </fieldset>
+          </div>
+
+          <div class="col-lg-4">
+            <fieldset>
+              <label></label>
+              <div class="form-group div-button-search">
+                <button class="btn btn-primary" type="button" (click)="search(content)">Pesquisar</button>
+              </div>
+            </fieldset>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div  *ngIf="objects.content.length > 0">
+      <div class="ol-lg-4">
+        <div class="card mb-3">
+          <div class="card-header">
+            Caixas
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Status</th>
+                <th>Aćões</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let p of objects.content">
+                <th scope="row">{{p.statusCaixa}}</th>
+                <td>Editar Excluir</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body table-responsive">
+
+        <nav aria-label="Caixas">
+          <ul *ngIf="objects.totalPages >= 1" class="pagination" >
+
+
+
+            <li class="page-item" [ngClass]="{disabled:objects.first === true}">
+              <a class="page-link" (click)="setPage(1)" aria-label="Previous">
+                <span aria-hidden="true">Fists</span>
+              </a>
+            </li>
+
+            <li class="page-item" [ngClass]="{disabled:objects.first === true}">
+              <a class="page-link" (click)="setPage(objects.number - 1)" aria-label="Previous">
+                <span aria-hidden="true">Previous</span>
+              </a>
+            </li>
+
+            <li class="page-item" [ngClass]="{disabled:objects.number === objects.totalPages}">
+              <a class="page-link" (click)="setPage(objects.totalPages)">
+                <span aria-hidden="true">Last</span>
+              </a>
+            </li>
+
+
+          </ul>
+
+        </nav>
+
+      </div>
+    </div>
+
+  </form>
+</div>

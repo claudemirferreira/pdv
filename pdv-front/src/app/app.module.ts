@@ -12,14 +12,12 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { LoginService } from './login/login.service';
 import { ProductsService } from './layout/products/products.service';
-import {ApiService} from "./shared/service";
-import {JwtService} from "./shared/guard";
-
+import { CaixasService } from './layout/caixas/caixas.service';
+import { ApiService} from "./shared/service";
+import { JwtService} from "./shared/guard";
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
-    // for development
-    // return new TranslateHttpLoader(http, '/start-angular/SB-Admin-BS4-Angular-5/master/dist/assets/i18n/', '.json');
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
@@ -40,7 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard, LoginService, ApiService, JwtService, ProductsService],
+    providers: [AuthGuard, LoginService, ApiService, JwtService, ProductsService, CaixasService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
