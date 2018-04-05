@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   paginated: Paginate;
   productForm: FormGroup;
   closeResult: string;
+  idProduct: number;
 
   private modalRef: NgbModalRef;
 
@@ -60,6 +61,17 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  updateProduct(content) {
+    this.service.updateProduct(this.product).subscribe(
+      (data: any) => {
+        this.router.navigateByUrl("/products-search");
+      },
+      (data: any) => {
+        console.log('Error on save product');
+      }
+    );
+  }
+
   open(content) {
     this.modalRef = this.modalService.open(content);
     this.modalRef.result.then((result) => {
@@ -87,11 +99,10 @@ export class ProductsComponent implements OnInit {
 
   private editLoadData() {
     this.route.params.subscribe(ps => {
-      let idProduct = ps['idProduct'];
-      if(idProduct) {
-        this.service.getProduct(idProduct).subscribe(
+      this.idProduct = ps['idProduct'];
+      if(this.idProduct) {
+        this.service.getProduct(this.idProduct).subscribe(
           (data: Produto) => {
-            console.log("carregando produto");
             this.product = data;
           }, (error) => {
 

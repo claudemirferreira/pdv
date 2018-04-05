@@ -74,9 +74,9 @@
                 [(ngModel)]="product.unidadeMedida"
                 formControlName="medida"
                 name="medida">
-                <option selected value="1">Unidade</option>
-                <option value="2">Peso</option>
-                <option value="3">Metro</option>
+                <option selected value="UNIDADE">Unidade</option>
+                <option value="PESO">Peso</option>
+                <option value="METRO">Metro</option>
               </select>
             </div>
 
@@ -85,9 +85,10 @@
         </div>
 
         <fieldset class="button-group">
-          <button type="reset" class="btn btn-secondary">Limpar</button>
-          <button type="submit" class="btn btn-primary" (click)="saveProduct(content)" [disabled]="!productForm.valid">Salvar
-          </button>
+          <button *ngIf="!idProduct" type="reset" class="btn btn-secondary">Limpar</button>
+          <button *ngIf="idProduct" [routerLink]="['/products-search']" class="btn btn-secondary">Cancelar</button>
+          <button *ngIf="!idProduct" type="submit" class="btn btn-primary" (click)="saveProduct(content)" [disabled]="!productForm.valid">Salvar</button>
+          <button *ngIf="idProduct" type="submit" class="btn btn-primary" (click)="updateProduct(content)" [disabled]="!productForm.valid">Atualizar</button>
         </fieldset>
 
         <div class="card-body" >

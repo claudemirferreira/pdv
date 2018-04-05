@@ -4,5 +4,5 @@ export class Produto {
     public codigoBarra: string = "";
     public precoCusto: number;
     public precoVenda: number;
-    public unidadeMedida: number;
+    public unidadeMedida: string;
 }

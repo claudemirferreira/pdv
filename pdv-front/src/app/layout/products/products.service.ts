@@ -14,6 +14,10 @@ export class ProductsService {
         return this.apiService.post("/produtos",{produto: product});
     }
 
+    updateProduct(product: Produto) {
+      return this.apiService.put("/produtos",{produto: product});
+    }
+
     searchProducts(product: Produto, page: number = 0, size: number = 5) {
       let params = new HttpParams()
         .set("nome", product.nome)
